@@ -458,7 +458,17 @@ While the system is functionally designed as a Utilitarian optimizer, its ethica
 \section{Description of Approach}
 Our implementation strategy focuses on formalizing the ethical considerations identified in Chapter 2 using the \textbf{Z3 Theorem Prover}. Rather than building a full transit simulator, we developed a constraint-satisfaction model (\texttt{cityswift\_z3\_implementation.py}) that represents the CitySwift network as a set of logical variables (e.g., route frequencies, incident confidence, environmental factors).
 
+\subsection{Implementation: Formal Ethical Constraints}
+
 By encoding ethical principles as "hard constraints" or "optimization goals," we can mathematically validate whether a proposed network configuration (functional goal) violates our ethical baseline. This approach bridges the gap between high-level ethical schools of thought and executable code.
+
+\subsubsection{Data Definitions}
+To ensure clarity, the following logical predicates define the core parameters of our CitySwift model:
+\begin{itemize}
+    \item \textbf{Baseline Frequency}: The standard service level (buses per hour) mandated by the public transport contract. This serves as the reference point for assessing service drops and distributive justice.
+    \item \textbf{Passenger Demand}: The predicted volume of commuters for a route. The system uses this value to prioritize high-capacity corridors in pursuit of utilitarian efficiency.
+    \item \textbf{Route Criticality}: A binary flag identifying routes that serve essential infrastructure (e.g., hospitals, schools). Critical routes trigger stringent deontological safety rules.
+\end{itemize}
 
 \subsection{Formal Ethical Constraints (8 Cases)}
 
