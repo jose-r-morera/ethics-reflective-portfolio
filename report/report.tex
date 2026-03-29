@@ -244,23 +244,23 @@ A critical analytical vector for understanding the CitySwift system lies in iden
 \textbf{Symbolic AI:} To counteract this architectural opacity, we hypothesize—again, as a \textbf{best guess} since proprietary code is unavailable—that the platform simultaneously employs symbolic artificial intelligence. Symbolic AI encompasses rule-based systems, explicit logic programming, and expert systems characterized by their reliance on human-readable logic \cite{intro_prop_logic}. Symbolic AI handles structured logical problems and provides the exact transparency required for contractual and financial accountability in public sector deployments. We guess that this is most evident in the platform's incident management protocol and delay categorization logic. When a transit disruption occurs, the system likely utilizes an explicit, rule-based categorization matrix (a symbolic expert system) to determine if a delay is "operator-controlled" (e.g., driver error or fleet maintenance failure) or "externally-controlled" (e.g., unexpected infrastructure bottlenecks or severe weather events).
 
 \begin{table}[h!]
-    \centering
-    \begin{tabular}{|p{3.2cm}|p{3.5cm}|p{3.5cm}|p{4cm}|}
-        \hline
-        \textbf{AI Methodology}                                                                                                                 & \textbf{Core Strengths} & \textbf{Inherent Weaknesses} & \textbf{CitySwift Platform Application} \\
-        \hline
-        \textbf{Sub-Symbolic AI} \newline (Machine Learning, Neural Networks)                                                                   &
-        Unmatched pattern recognition, scalability across billions of data points, adaptability to noisy, unstructured AVL telemetry.           &
-        Severe lack of transparency, interpretability issues, highly susceptible to hidden historical data biases, operates as a black box.     &
-        Powers the predictive forecasting engines, demand analysis tools, and the simulation capabilities of the Evolve module.                                                                                                                    \\
-        \hline
-        \textbf{Symbolic AI} \newline (Rule-Based Systems, Expert Systems)                                                                      &
-        Explicit logical reasoning, complete transparency, highly effective for structured regulatory problems, requires minimal training data. &
-        Extreme inflexibility, suffers from the knowledge acquisition bottleneck, highly brittle when processing unexpected edge cases.         &
-        \textit{(Best Guess)} Drives the incident management system, administers the operator vs. externally-controlled categorization logic, and ensures contractual compliance.                                                                  \\
-        \hline
-    \end{tabular}
-    \caption{Comparison of AI Methodologies within the CitySwift Architecture}
+  \centering
+  \begin{tabular}{|p{3.2cm}|p{3.5cm}|p{3.5cm}|p{4cm}|}
+    \hline
+    \textbf{AI Methodology}                                                                                                                 & \textbf{Core Strengths} & \textbf{Inherent Weaknesses} & \textbf{CitySwift Platform Application} \\
+    \hline
+    \textbf{Sub-Symbolic AI} \newline (Machine Learning, Neural Networks)                                                                   &
+    Unmatched pattern recognition, scalability across billions of data points, adaptability to noisy, unstructured AVL telemetry.           &
+    Severe lack of transparency, interpretability issues, highly susceptible to hidden historical data biases, operates as a black box.     &
+    Powers the predictive forecasting engines, demand analysis tools, and the simulation capabilities of the Evolve module.                                                                                                                    \\
+    \hline
+    \textbf{Symbolic AI} \newline (Rule-Based Systems, Expert Systems)                                                                      &
+    Explicit logical reasoning, complete transparency, highly effective for structured regulatory problems, requires minimal training data. &
+    Extreme inflexibility, suffers from the knowledge acquisition bottleneck, highly brittle when processing unexpected edge cases.         &
+    \textit{(Best Guess)} Drives the incident management system, administers the operator vs. externally-controlled categorization logic, and ensures contractual compliance.                                                                  \\
+    \hline
+  \end{tabular}
+  \caption{Comparison of AI Methodologies within the CitySwift Architecture}
 \end{table}
 
 This hypothesized neuro-symbolic integration represents a highly sophisticated socio-technical achievement. A sub-symbolic neural component continuously processes raw environmental data to predict network realities, while a symbolic component applies rigid contractual logic to these predictions, allowing the platform to deliver data-led decisions with a high degree of operational confidence.
@@ -465,10 +465,10 @@ By encoding ethical principles as "hard constraints" or "optimization goals," we
 \subsubsection{Data Definitions}
 To ensure clarity, the following logical predicates define the core parameters of our CitySwift model:
 \begin{itemize}
-    \item \textbf{Reference Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
-    \item \textbf{Ethical Minimum (Floor)}: Defined by Case 1 and Case 4, these are the absolute service floors (e.g., 50\% for hospital routes, 60\% for urban zones) that the AI is strictly forbidden from crossing, even when optimizing for efficiency.
-    \item \textbf{Passenger Demand}: The predicted volume of commuters for a route, used to drive utilitarian optimization across the remaining fleet capacity.
-    \item \textbf{Route Criticality}: A binary flag identifying essential infrastructure (hospitals, schools) that triggers the highest level of deontological protection.
+  \item \textbf{Reference Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
+  \item \textbf{Ethical Minimum (Floor)}: Defined by Case 1 and Case 4, these are the absolute service floors (e.g., 50\% for hospital routes, 60\% for urban zones) that the AI is strictly forbidden from crossing, even when optimizing for efficiency.
+  \item \textbf{Passenger Demand}: The predicted volume of commuters for a route, used to drive utilitarian optimization across the remaining fleet capacity.
+  \item \textbf{Route Criticality}: A binary flag identifying essential infrastructure (hospitals, schools) that triggers the highest level of deontological protection.
 \end{itemize}
 
 \subsection{Formal Ethical Constraints (8 Cases)}
@@ -576,10 +576,20 @@ Validation of the functional and ethical goals was achieved by executing the \te
 Executing CitySwift Ethical Logic Engine...
 Scenario Parameters:
 - Total Fleet Limit: 60 buses
-- Number of Drivers: 20
-- Driver Hour Limit: 8.0 hrs/shift
-- Reference Baseline: Contractual Target
+- Driver Capacity: 20 drivers (8.0 hrs/shift)
+- Input Mock Routes [ID | Zone | Base | Demand | Critical]:
+  R0  | Z0   | 4    | 100    | Yes
+  R1  | Z0   | 6    | 80     | No
+  R2  | Z1   | 4    | 120    | Yes
+  R3  | Z1   | 8    | 200    | No
+  R4  | Z2   | 5    | 50     | No
+  R5  | Z2   | 5    | 30     | No
+  R6  | Z3   | 10   | 300    | No
+  R7  | Z3   | 4    | 20     | No
+  R8  | Z4   | 6    | 150    | No
+  R9  | Z4   | 4    | 10     | No
 
+Executing CitySwift Ethical Logic Engine...
 Solver Result: sat
 
 SUCCESSFUL. All ethical constraints are satisfied.
