@@ -456,20 +456,38 @@ While the system is functionally designed as a Utilitarian optimizer, its ethica
 \textbf{Link to Repository:} \href{https://github.com/jose-r-morera/ethics-reflective-portfolio}{https://github.com/jose-r-morera/ethics-reflective-portfolio}
 
 \section{Description of Approach}
-Our implementation strategy focuses on formalizing the ethical considerations identified in Chapter 2 using the \textbf{Z3 Theorem Prover}. Rather than building a full transit simulator, we developed a constraint-satisfaction model (\texttt{cityswift\_z3\_implementation.py}) that represents the CitySwift network as a set of logical variables (e.g., route frequencies, incident confidence, environmental factors).
+This section details our approach to modeling the CitySwift system, distinguishing between operational (functional) and ethical objectives.
 
-\subsection{Implementation: Formal Ethical Constraints}
-
-By encoding ethical principles as "hard constraints" or "optimization goals," we can mathematically validate whether a proposed network configuration (functional goal) violates our ethical baseline. This approach bridges the gap between high-level ethical schools of thought and executable code.
-
-\subsubsection{Data Definitions}
-To ensure clarity, the following logical predicates define the core parameters of our CitySwift model:
+\subsection{Domain Identification}
+The domain of the system is modeled as a formal transport network consisting of:
 \begin{itemize}
-  \item \textbf{Reference Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
-  \item \textbf{Ethical Minimum (Floor)}: Defined by Case 1 and Case 4, these are the absolute service floors (e.g., 50\% for hospital routes, 60\% for urban zones) that the AI is strictly forbidden from crossing, even when optimizing for efficiency.
-  \item \textbf{Passenger Demand}: The predicted volume of commuters for a route, used to drive utilitarian optimization across the remaining fleet capacity.
-  \item \textbf{Route Criticality}: A binary flag identifying essential infrastructure (hospitals, schools) that triggers the highest level of deontological protection.
+  \item \textbf{Routes ($R$)}: The fundamental units of service (e.g., Bus Éireann line segments).
+  \item \textbf{Zones ($Z$)}: Geographic aggregations used for distributive justice audits.
+  \item \textbf{Operational Capacity}: Finite resources including fleet size (60 buses) and driver man-hours (160 hours total).
+  \item \textbf{Passenger Demand ($D$)}: Variable throughput requirements per route.
+  \item \textbf{Criticality ($C$)}: Predicates identifying essential social infrastructure (e.g., hospitals, schools).
 \end{itemize}
+
+\subsection{Functional Goals and Validation}
+Our functional goals ($F_{n}$) focus on network utility and operational efficiency:
+\begin{itemize}
+  \item \textbf{F1: Network Utility Maximization}: The primary objective is to maximize passenger throughput across the network.
+  \item \textbf{F2: Resource Constraint Satisfaction}: Ensuring the allocated frequency does not exceed the physical fleet or driver availability.
+  \item \textbf{F3: Predictable Synchronization}: Limiting real-time headway deviations to +/- 15 minutes of the public timetable.
+\end{itemize}
+\textbf{Validation Method:} These goals are validated using the Z3 Optimizer, which searches for a satisfying assignment that maximizes the utility function while respecting all physical and temporal constraints. Success is defined by the solver returning a \texttt{sat} result for a given operational scenario.
+
+\subsection{Ethical Goals and Validation}
+The ethical goals ($E_{n}$) represent the normative "guardrails" identified in Chapter 2:
+\begin{itemize}
+  \item \textbf{E1: Minimum Service Floor}: Deontological protection ensuring critical routes retain at least 50\% of baseline frequency.
+  \item \textbf{E2: Distributive Justice}: Ensuring each urban zone retains at least 60\% of its total baseline capacity to prevent "transit deserts."
+  \item \textbf{E3: Operator Fairness}: Enforcing a 95\% confidence threshold for automated delay penalties.
+  \item \textbf{E4: Virtue of Care}: Prioritizing human comfort (heating/boarding) over carbon efficiency in severe weather (sub-zero).
+\end{itemize}
+\textbf{Validation Method:} Ethical goals are encoded as hard logical invariants within the Z3 model (\texttt{cityswift\_z3\_implementation.py}). Validation is achieved by proving that no functional optimization can violate these predicates.
+
+\textbf{NOTE:} As per the requirements, our implementation is designed to identify situations where goals \textit{cannot} be reached. This occurs when functional demand (e.g., a mandate for 200\% frequency) contradicts ethical or operational limits. Our script includes a "Resource Contradiction" scenario specifically to demonstrate this failure detection.
 
 \subsection{Formal Ethical Constraints (8 Cases)}
 
@@ -571,17 +589,30 @@ While the system aims to dynamically eliminate "bus bunching" through real-time 
 The system’s predictive accuracy (Technical Value) depends on high-dimensional datasets, including ticketing and origin-destination flows. However, this creates a Deontological conflict with the passenger's right to privacy and GDPR-mandated data minimization. A purely optimized system would use personalized travel histories to anticipate individual needs. We revisited this in Case 8 by formalizing a consent-based logical gate: unless explicit user consent is registered, the system is strictly limited to using aggregated, anonymized zone data, prioritizing individual privacy over marginal gains in predictive precision.
 
 \section{Evidence}
-Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script. The solver leverages First-Order Logic (FOL) predicates and soft-constraint optimization to reconcile all 8 ethical cases. The successful ethical reconciliation, including the full scenario context and distributive justice audit, is shown in the actual terminal screenshot below (Figure \ref{fig:z3_output}).
+Evidence for the successful validation of the system's dual objectives is presented via two distinct terminal outputs from our implementation script.
+
+\subsection{Functional and Ethical Goal Validation}
+Figure \ref{fig:z3_success} demonstrates the "Standard Operation" scenario, where both functional utility (Network Score: 13440) and ethical constraints (Critical Protection, GDPR Anonymization, and Weather Care) are simultaneously satisfied.
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.95\textwidth]{z3_success_output.png}
-  \caption{Terminal output of the CitySwift Ethical Logic Engine, showing successful reconciliation of Deontological, Utilitarian, and Distributive constraints.}
-  \label{fig:z3_output}
+  \includegraphics[width=0.95\textwidth]{functional_ethical_validation.png}
+  \caption{Terminal output showing successful validation of both functional performance and ethical constraint satisfaction.}
+  \label{fig:z3_success}
+\end{figure}
+
+\subsection{Identification of Goal Unreachability}
+As required by the template, Figure \ref{fig:z3_failure} demonstrates the system identifying a situation where goals cannot be reached. In the "Resource Contradiction" scenario, an impossible functional demand is injected, forcing a logical conflict with the ethical safety rules and the operational limits.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{goal_failure_validation.png}
+  \caption{Terminal output identifying a "Validation Failed" state where functional demands violate ethical safety guardrails.}
+  \label{fig:z3_failure}
 \end{figure}
 
 \paragraph{Logic Analysis}
-The terminal screenshot provides a comprehensive audit trail of the ethical reconciliation process. By explicitly displaying the \textbf{Zone Coverage Summary}, the engine proves that distributive justice (Case 4) is mathematically satisfied, with every urban zone receiving at least 60\% of its \textbf{Reference Baseline}. Furthermore, the \textbf{Ethical Governance Status} section confirms that both deontological minimums (Case 1) and utilitarian optimization (Case 5) are active and successfully reconciled. This level of transparency ensures that the system's decisions are explainable, verifiable, and ethically grounded for all stakeholders.
+The success screenshot (Fig \ref{fig:z3_success}) provides an audit trail showing that the engine maximizes utility while respecting the "Critical" route floors and the sub-zero "Weather Care" mode. Conversely, the failure screenshot (Fig \ref{fig:z3_failure}) proves the solver's robustness: it refuses to generate a plan that would compromise the ethical baseline, correctly flagging a contradiction.
 
 %%%%%%%%
 \chapter{ChatGPT Says...}

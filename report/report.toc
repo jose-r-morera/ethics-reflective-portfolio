@@ -11,27 +11,30 @@
 \contentsline {paragraph}{Data Integration (Technical) vs. Worker Privacy (Legal)}{10}{section*.20}%
 \contentsline {chapter}{\numberline {3}Implementation}{12}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Description of Approach}{12}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Implementation: Formal Ethical Constraints}{12}{subsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}Data Definitions}{12}{subsubsection.3.1.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Formal Ethical Constraints (8 Cases)}{12}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Case 1: Minimum Service Baseline (Utilitarianism)}{13}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Case 2: Penalty Categorization Confidence (Deontology)}{13}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Case 3: Extreme Weather Prioritization (Virtue Ethics)}{13}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Case 4: Transit Desert Prevention (Relational Ethics)}{13}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Case 5: Carbon-Neutral Fleet Optimization (Ecological Stewardship)}{14}{subsection.3.1.7}%
-\contentsline {subsection}{\numberline {3.1.8}Case 6: Driver Fatigue Management (Legal / Deontology)}{14}{subsection.3.1.8}%
-\contentsline {subsection}{\numberline {3.1.9}Case 7: Predictable Scheduling vs. Dynamic Efficiency (Reliability)}{14}{subsection.3.1.9}%
-\contentsline {subsection}{\numberline {3.1.10}Case 8: GDPR Anonymization vs. Predictive Precision (Privacy)}{14}{subsection.3.1.10}%
+\contentsline {subsection}{\numberline {3.1.1}Domain Identification}{12}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Functional Goals and Validation}{12}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Ethical Goals and Validation}{13}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Formal Ethical Constraints (8 Cases)}{13}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Case 1: Minimum Service Baseline (Utilitarianism)}{13}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}Case 2: Penalty Categorization Confidence (Deontology)}{13}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Case 3: Extreme Weather Prioritization (Virtue Ethics)}{14}{subsection.3.1.7}%
+\contentsline {subsection}{\numberline {3.1.8}Case 4: Transit Desert Prevention (Relational Ethics)}{14}{subsection.3.1.8}%
+\contentsline {subsection}{\numberline {3.1.9}Case 5: Carbon-Neutral Fleet Optimization (Ecological Stewardship)}{14}{subsection.3.1.9}%
+\contentsline {subsection}{\numberline {3.1.10}Case 6: Driver Fatigue Management (Legal / Deontology)}{14}{subsection.3.1.10}%
+\contentsline {subsection}{\numberline {3.1.11}Case 7: Predictable Scheduling vs. Dynamic Efficiency (Reliability)}{15}{subsection.3.1.11}%
+\contentsline {subsection}{\numberline {3.1.12}Case 8: GDPR Anonymization vs. Predictive Precision (Privacy)}{15}{subsection.3.1.12}%
 \contentsline {section}{\numberline {3.2}Points of Conflict}{15}{section.3.2}%
 \contentsline {paragraph}{Efficiency vs. Equity (Transit Deserts)}{15}{section*.22}%
 \contentsline {paragraph}{Ecological Stewardship vs. Virtue of Care}{15}{section*.23}%
-\contentsline {paragraph}{Data-Driven Accuracy vs. Worker Safety}{15}{section*.24}%
-\contentsline {paragraph}{Algorithmic Transparency vs. Punitive Accuracy}{15}{section*.25}%
-\contentsline {paragraph}{Predictable Reliability vs. Dynamic Throughput}{15}{section*.26}%
-\contentsline {paragraph}{Data Privacy vs. Predictive Precision}{15}{section*.27}%
+\contentsline {paragraph}{Data-Driven Accuracy vs. Worker Safety}{16}{section*.24}%
+\contentsline {paragraph}{Algorithmic Transparency vs. Punitive Accuracy}{16}{section*.25}%
+\contentsline {paragraph}{Predictable Reliability vs. Dynamic Throughput}{16}{section*.26}%
+\contentsline {paragraph}{Data Privacy vs. Predictive Precision}{16}{section*.27}%
 \contentsline {section}{\numberline {3.3}Evidence}{16}{section.3.3}%
-\contentsline {paragraph}{Logic Analysis}{16}{section*.28}%
-\contentsline {chapter}{\numberline {4}ChatGPT Says...}{17}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Teammate \#1 Says...}{18}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Teammate \#2 Says...}{19}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions}{20}{chapter.7}%
+\contentsline {subsection}{\numberline {3.3.1}Functional and Ethical Goal Validation}{16}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Identification of Goal Unreachability}{18}{subsection.3.3.2}%
+\contentsline {paragraph}{Logic Analysis}{18}{section*.28}%
+\contentsline {chapter}{\numberline {4}ChatGPT Says...}{19}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Teammate \#1 Says...}{20}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Teammate \#2 Says...}{21}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions}{22}{chapter.7}%
