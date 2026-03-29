@@ -578,18 +578,18 @@ Solver Result: sat
 
 SUCCESSFUL. All ethical constraints are satisfied.
 
-Route ID  | Zone     | Allocated Freq   | Demand     | Status
+Route ID  | Zone     | Allocated (Base)   | Demand     | Status
 -------------------------------------------------------------
-Route 0    | Z0       | 6           buses/hr | 100    pax |  [CRITICAL]
-Route 1    | Z0       | 0           buses/hr | 80     pax | 
-Route 2    | Z1       | 2           buses/hr | 120    pax |  [CRITICAL]
-Route 3    | Z1       | 6           buses/hr | 200    pax | 
-Route 4    | Z2       | 6           buses/hr | 50     pax | 
-Route 5    | Z2       | 0           buses/hr | 30     pax | 
-Route 6    | Z3       | 34          buses/hr | 300    pax | 
-Route 7    | Z3       | 0           buses/hr | 20     pax | 
-Route 8    | Z4       | 6           buses/hr | 150    pax | 
-Route 9    | Z4       | 0           buses/hr | 10     pax | 
+Route 0    | Z0       | 6  (4 ) buses/hr | 100    pax |  [CRITICAL]
+Route 1    | Z0       | 0  (6 ) buses/hr | 80     pax | 
+Route 2    | Z1       | 2  (4 ) buses/hr | 120    pax |  [CRITICAL]
+Route 3    | Z1       | 6  (8 ) buses/hr | 200    pax | 
+Route 4    | Z2       | 6  (5 ) buses/hr | 50     pax | 
+Route 5    | Z2       | 0  (5 ) buses/hr | 30     pax | 
+Route 6    | Z3       | 34 (10) buses/hr | 300    pax | 
+Route 7    | Z3       | 0  (4 ) buses/hr | 20     pax | 
+Route 8    | Z4       | 6  (6 ) buses/hr | 150    pax | 
+Route 9    | Z4       | 0  (4 ) buses/hr | 10     pax | 
 
 Zone Coverage Summary (Distributive Justice):
 ---------------------------------------------
@@ -603,7 +603,7 @@ Ethical Governance Status:
 - [Case 1] Hospital/School Protection: True
 - [Case 4] Transit Desert Prevention: Minimum 60% coverage enforced per zone.
 - [Case 5] Utilitarian Optimization: Efficiency maximized (Score: 13440)
-- [Case 6] Driver Safety: Hours constrained to legal limits.
+- [Case 6] Driver Safety: Avg workload 3.6 hrs/shift (Limit: 8.0).
 
 Operational Metadata:
 - Weather Care Mode: True
