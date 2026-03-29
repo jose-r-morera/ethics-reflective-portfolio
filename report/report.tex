@@ -506,11 +506,12 @@ optimizer.add_soft(prioritize_passenger_care == True, weight=100)
 \subsection{Case 4: Transit Desert Prevention (Relational Ethics)}
 Ensuring equitable access across all urban zones. Every zone must retain at least 60\% of its total baseline service capacity during any optimization step.
 \begin{lstlisting}[style=py]
-# Zone must retain at least 60% of baseline total capacity
+# Every zone must retain at least 60% of baseline total capacity
 for z in zones:
-    zone_baseline = z3.Sum([z3.If(route_zone(r) == z, baseline_freq(r), 0) for r in routes])
-    zone_current = z3.Sum([z3.If(route_zone(r) == z, frequency(r), 0) for r in routes])
-    optimizer.add(z3.ToReal(zone_current) >= 0.6 * z3.ToReal(zone_baseline))
+    routes_in_zone = [r for r, r_zone, b, d, c, sh in mock_data if r_base_zone(r_zone) == str(z)]
+    z_baseline = sum([b for i, r_zone, b, d, c, sh in mock_data if r_base_zone(r_zone) == str(z)])
+    zone_sum = z3.Sum([frequency(r) for r in routes_in_zone])
+    optimizer.add(z3.ToReal(zone_sum) >= z3.ToReal(z_baseline) * 0.6)
 \end{lstlisting}
 
 \subsection{Case 5: Carbon-Neutral Fleet Optimization (Ecological Stewardship)}
@@ -575,7 +576,7 @@ Validation of the functional and ethical goals was achieved by executing the \te
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.95\textwidth]{z3_success_output.png}
-  \caption{High-fidelity terminal output of the CitySwift Ethical Logic Engine, showing successful reconciliation of Deontological, Utilitarian, and Distributive constraints.}
+  \caption{Terminal output of the CitySwift Ethical Logic Engine, showing successful reconciliation of Deontological, Utilitarian, and Distributive constraints.}
   \label{fig:z3_output}
 \end{figure}
 
