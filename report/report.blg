@@ -1,22 +1,22 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
-[1] Config.pm:311> INFO - Logfile is 'report.blg'
-[171] biber:340> INFO - === Sun Mar 29, 2026, 05:16:47
-[219] Biber.pm:420> INFO - Reading 'report.bcf'
-[327] Biber.pm:994> INFO - Found 7 citekeys in bib section 0
-[348] Biber.pm:4463> INFO - Processing section 0
-[365] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
-[372] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[372] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[372] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
-[372] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[373] bbl.pm:676> INFO - Writing 'report.bbl' with encoding 'UTF-8'
-[373] bbl.pm:779> INFO - Output to report.bbl
-[373] Biber.pm:131> WARN - Data source 'references.bib' is empty, ignoring
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_bus_eireann' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'galwaybayfm_cityswift' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_gov_uk' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'intro_machine_ethics' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'intro_prop_logic' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'relational_ethics' (section 0)
-[373] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_esg' (section 0)
-[373] Biber.pm:133> INFO - WARNINGS: 8
+[0] Config.pm:311> INFO - Logfile is 'report.blg'
+[77] biber:340> INFO - === Sun Mar 29, 2026, 17:37:56
+[91] Biber.pm:420> INFO - Reading 'report.bcf'
+[155] Biber.pm:994> INFO - Found 7 citekeys in bib section 0
+[170] Biber.pm:4463> INFO - Processing section 0
+[184] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[190] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[190] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[190] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
+[190] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[191] bbl.pm:676> INFO - Writing 'report.bbl' with encoding 'UTF-8'
+[191] bbl.pm:779> INFO - Output to report.bbl
+[191] Biber.pm:131> WARN - Data source 'references.bib' is empty, ignoring
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_bus_eireann' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'galwaybayfm_cityswift' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_gov_uk' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'intro_machine_ethics' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'intro_prop_logic' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'relational_ethics' (section 0)
+[191] Biber.pm:131> WARN - I didn't find a database entry for 'cityswift_esg' (section 0)
+[191] Biber.pm:133> INFO - WARNINGS: 8

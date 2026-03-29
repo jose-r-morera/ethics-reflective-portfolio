@@ -244,23 +244,23 @@ A critical analytical vector for understanding the CitySwift system lies in iden
 \textbf{Symbolic AI:} To counteract this architectural opacity, we hypothesize—again, as a \textbf{best guess} since proprietary code is unavailable—that the platform simultaneously employs symbolic artificial intelligence. Symbolic AI encompasses rule-based systems, explicit logic programming, and expert systems characterized by their reliance on human-readable logic \cite{intro_prop_logic}. Symbolic AI handles structured logical problems and provides the exact transparency required for contractual and financial accountability in public sector deployments. We guess that this is most evident in the platform's incident management protocol and delay categorization logic. When a transit disruption occurs, the system likely utilizes an explicit, rule-based categorization matrix (a symbolic expert system) to determine if a delay is "operator-controlled" (e.g., driver error or fleet maintenance failure) or "externally-controlled" (e.g., unexpected infrastructure bottlenecks or severe weather events).
 
 \begin{table}[h!]
-  \centering
-  \begin{tabular}{|p{3.2cm}|p{3.5cm}|p{3.5cm}|p{4cm}|}
-    \hline
-    \textbf{AI Methodology}                                                                                                                 & \textbf{Core Strengths} & \textbf{Inherent Weaknesses} & \textbf{CitySwift Platform Application} \\
-    \hline
-    \textbf{Sub-Symbolic AI} \newline (Machine Learning, Neural Networks)                                                                   &
-    Unmatched pattern recognition, scalability across billions of data points, adaptability to noisy, unstructured AVL telemetry.           &
-    Severe lack of transparency, interpretability issues, highly susceptible to hidden historical data biases, operates as a black box.     &
-    Powers the predictive forecasting engines, demand analysis tools, and the simulation capabilities of the Evolve module.                                                                                                                    \\
-    \hline
-    \textbf{Symbolic AI} \newline (Rule-Based Systems, Expert Systems)                                                                      &
-    Explicit logical reasoning, complete transparency, highly effective for structured regulatory problems, requires minimal training data. &
-    Extreme inflexibility, suffers from the knowledge acquisition bottleneck, highly brittle when processing unexpected edge cases.         &
-    \textit{(Best Guess)} Drives the incident management system, administers the operator vs. externally-controlled categorization logic, and ensures contractual compliance.                                                                  \\
-    \hline
-  \end{tabular}
-  \caption{Comparison of AI Methodologies within the CitySwift Architecture}
+    \centering
+    \begin{tabular}{|p{3.2cm}|p{3.5cm}|p{3.5cm}|p{4cm}|}
+        \hline
+        \textbf{AI Methodology}                                                                                                                 & \textbf{Core Strengths} & \textbf{Inherent Weaknesses} & \textbf{CitySwift Platform Application} \\
+        \hline
+        \textbf{Sub-Symbolic AI} \newline (Machine Learning, Neural Networks)                                                                   &
+        Unmatched pattern recognition, scalability across billions of data points, adaptability to noisy, unstructured AVL telemetry.           &
+        Severe lack of transparency, interpretability issues, highly susceptible to hidden historical data biases, operates as a black box.     &
+        Powers the predictive forecasting engines, demand analysis tools, and the simulation capabilities of the Evolve module.                                                                                                                    \\
+        \hline
+        \textbf{Symbolic AI} \newline (Rule-Based Systems, Expert Systems)                                                                      &
+        Explicit logical reasoning, complete transparency, highly effective for structured regulatory problems, requires minimal training data. &
+        Extreme inflexibility, suffers from the knowledge acquisition bottleneck, highly brittle when processing unexpected edge cases.         &
+        \textit{(Best Guess)} Drives the incident management system, administers the operator vs. externally-controlled categorization logic, and ensures contractual compliance.                                                                  \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of AI Methodologies within the CitySwift Architecture}
 \end{table}
 
 This hypothesized neuro-symbolic integration represents a highly sophisticated socio-technical achievement. A sub-symbolic neural component continuously processes raw environmental data to predict network realities, while a symbolic component applies rigid contractual logic to these predictions, allowing the platform to deliver data-led decisions with a high degree of operational confidence.
@@ -269,19 +269,19 @@ This hypothesized neuro-symbolic integration represents a highly sophisticated s
 As documented in CitySwift's service definitions and its public partnership announcements with Bus Éireann \cite{cityswift_bus_eireann, cityswift_gov_uk}, the platform moves beyond generic data visualization to achieve highly specific, operational goals explicitly engineered to maximize network efficiency, operational predictability, and data integrity. The concrete functional objectives of the deployed system are:
 
 \begin{itemize}
-  \item \textbf{High-Fidelity Telemetry Fusion:} To continuously ingest and reconcile disparate, high-frequency transit data streams—specifically Automatic Vehicle Location (AVL) GPS pings, Real-Time Passenger Information (RTPI), and electronic ticketing logs. This creates a singular, "cleansed" record of truth, preventing historical data noise from polluting newly franchised operational models.
+    \item \textbf{High-Fidelity Telemetry Fusion:} To continuously ingest and reconcile disparate, high-frequency transit data streams—specifically Automatic Vehicle Location (AVL) GPS pings, Real-Time Passenger Information (RTPI), and electronic ticketing logs. This creates a singular, "cleansed" record of truth, preventing historical data noise from polluting newly franchised operational models.
 
-  \item \textbf{Automated Delay Causality Categorization:} To calculate micro-metrics like Excess Wait Time (EWT) and stop-specific dwell times. \textit{(Best Guess)} The system functionally aims to flag whether a delay is "Operator-Controlled" or "Externally-Controlled" via a rule-based categorization matrix, which serves as the evidentiary basis for contractual financial adjustments between authorities and operators.
+    \item \textbf{Automated Delay Causality Categorization:} To calculate micro-metrics like Excess Wait Time (EWT) and stop-specific dwell times. \textit{(Best Guess)} The system functionally aims to flag whether a delay is "Operator-Controlled" or "Externally-Controlled" via a rule-based categorization matrix, which serves as the evidentiary basis for contractual financial adjustments between authorities and operators.
 
-  \item \textbf{Risk-Aware Schedule Simulation:} To utilize sub-symbolic machine learning models within the \textit{Evolve} module to simulate the impact of proposed timetable adjustments \textit{in silico}. This allows planners to statistically evaluate the trade-off between reducing vehicle "slack time" (efficiency) and the risk of late running (reliability).
+    \item \textbf{Risk-Aware Schedule Simulation:} To utilize sub-symbolic machine learning models within the \textit{Evolve} module to simulate the impact of proposed timetable adjustments \textit{in silico}. This allows planners to statistically evaluate the trade-off between reducing vehicle "slack time" (efficiency) and the risk of late running (reliability).
 
-  \item \textbf{Dynamic Demand-Capacity Matching:} To analyze passenger movement patterns to predict future trends and identify emerging mobility opportunities. The system aims to dynamically adjust headways to eradicate "bus bunching" during peak hours, ensuring that vehicle capacity is distributed precisely where and when demand is highest.
+    \item \textbf{Dynamic Demand-Capacity Matching:} To analyze passenger movement patterns to predict future trends and identify emerging mobility opportunities. The system aims to dynamically adjust headways to eradicate "bus bunching" during peak hours, ensuring that vehicle capacity is distributed precisely where and when demand is highest.
 
-  \item \textbf{Operational Resource Optimization:} To maximize the utilization of the network’s finite vehicular resources. By optimizing active fleet distribution and driver shift patterns, the system functionally minimizes "dead mileage" (non-revenue travel), reducing unnecessary fuel consumption and the overall carbon footprint per passenger journey.
+    \item \textbf{Operational Resource Optimization:} To maximize the utilization of the network’s finite vehicular resources. By optimizing active fleet distribution and driver shift patterns, the system functionally minimizes "dead mileage" (non-revenue travel), reducing unnecessary fuel consumption and the overall carbon footprint per passenger journey.
 
-  \item \textbf{Multi-Stakeholder Performance Transparency:} To provide automated, standardized reporting interfaces for different actors (regulators, operators, and planners). This goal ensures that all stakeholders have simultaneous access to the same performance KPIs, facilitating rapid incident management and objective performance audits.
+    \item \textbf{Multi-Stakeholder Performance Transparency:} To provide automated, standardized reporting interfaces for different actors (regulators, operators, and planners). This goal ensures that all stakeholders have simultaneous access to the same performance KPIs, facilitating rapid incident management and objective performance audits.
 
-  \item \textbf{Accessibility and Service-Reliability Analysis:} To identify specific network vulnerabilities where service gaps or chronic unreliability disproportionately affect certain routes. This functional objective provides the data-led foundation for the "Transit Desert" ethical constraint implemented in Chapter 3.
+    \item \textbf{Accessibility and Service-Reliability Analysis:} To identify specific network vulnerabilities where service gaps or chronic unreliability disproportionately affect certain routes. The functional goal is to provide data-driven evidence that allows for the protection of transit-dependent communities through targeted service interventions.
 \end{itemize}
 
 
@@ -293,61 +293,62 @@ Crucially, the primary actors in this ecosystem—most notably the transit opera
 
 Below is the identification of the primary and secondary actors within the STEEPL categories, alongside their corresponding ethical principles and the philosophical schools of thought that govern them.
 
-\begin{table}[h!]
-  \centering
-  \renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|p{1.7cm}|p{3.7cm}|p{3.5cm}|p{4.5cm}|}
-    \hline
-    \textbf{STEEPL Category}                                                                                                      &
-    \textbf{Stakeholders (Primary \& Secondary)}                                                                                  &
-    \textbf{Dominant Ethical Principle (The "1" in 5:1)}                                                                          &
-    \textbf{Applicable School(s) of Ethical Thought}                                                                                                                                                                    \\
-    \hline
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{1.7cm}|p{3.7cm}|p{3.5cm}|p{4.5cm}|}
+        \hline
+        \textbf{STEEPL Category}                                                                                                      &
+        \textbf{Stakeholders (Primary \& Secondary)}                                                                                  &
+        \textbf{Dominant Ethical Principle (The "1" in 5:1)}                                                                          &
+        \textbf{Applicable School(s) of Ethical Thought}                                                                                                                                                                    \\
+        \hline
 
-    \textbf{Social}                                                                                                               &
-    \textbf{Primary:} Commuters \& Passengers \newline
-    \textbf{Secondary:} Transit Advocacy Groups                                                                                   &
-    \textbf{Equitable Access:} Preventing the algorithmic creation of "transit deserts" for vulnerable populations.               &
-    \textbf{Relational Ethics / Ethics of Care:} Prioritizes the societal bond and the moral obligation to care for marginalized communities who rely heavily on public infrastructure \cite{relational_ethics}.        \\
-    \hline
+        \textbf{Social}                                                                                                               &
+        \textbf{Primary:} Commuters \& Passengers \newline
+        \textbf{Secondary:} Transit Advocacy Groups                                                                                   &
+        \textbf{Equitable Access:} Preventing the algorithmic creation of "transit deserts" for vulnerable populations.               &
+        \textbf{Relational Ethics / Ethics of Care:} Prioritizes the societal bond and the moral obligation to care for marginalized communities who rely heavily on public infrastructure \cite{relational_ethics}.        \\
+        \hline
 
-    \textbf{Technical}                                                                                                            &
-    \textbf{Primary:} CitySwift Engineers \newline
-    \textbf{Secondary:} Bus Éireann IT Admin                                                                                      &
-    \textbf{Transparency:} Ensuring the system's logic is verifiable and not an opaque "black box."                               &
-    \textbf{Deontology:} The engineer has a strict professional duty (rule-based ethics) to ensure safety constraints are formally verifiable and logically sound \cite{intro_machine_ethics}.                          \\
-    \hline
+        \textbf{Technical}                                                                                                            &
+        \textbf{Primary:} CitySwift Engineers \newline
+        \textbf{Secondary:} Bus Éireann IT Admin                                                                                      &
+        \textbf{Transparency:} Ensuring the system's logic is verifiable and not an opaque "black box."                               &
+        \textbf{Deontology:} The engineer has a strict professional duty (rule-based ethics) to ensure safety constraints are formally verifiable and logically sound \cite{intro_machine_ethics}.                          \\
+        \hline
 
-    \textbf{Economic}                                                                                                             &
-    \textbf{Primary:} Transit Operators (Bus Éireann) \newline
-    \textbf{Secondary:} Taxpayers / Investors                                                                                     &
-    \textbf{Fairness in Penalties:} Ensuring algorithmic categorizations of delays do not result in unjust financial penalties.   &
-    \textbf{Utilitarianism vs. Deontology:} Utilitarianism drives the functional goal of maximizing network profitability, but it must be constrained by the Deontological right to fair, auditable contract execution. \\
-    \hline
+        \textbf{Economic}                                                                                                             &
+        \textbf{Primary:} Transit Operators (Bus Éireann) \newline
+        \textbf{Secondary:} Taxpayers / Investors                                                                                     &
+        \textbf{Fairness in Penalties:} Ensuring algorithmic categorizations of delays do not result in unjust financial penalties.   &
+        \textbf{Utilitarianism vs. Deontology:} Utilitarianism drives the functional goal of maximizing network profitability, but it must be constrained by the Deontological right to fair, auditable contract execution. \\
+        \hline
 
-    \textbf{Ecological}                                                                                                           &
-    \textbf{Primary:} Local Urban Residents \newline
-    \textbf{Secondary:} Environmental Protection Agencies                                                                         &
-    \textbf{Harm Reduction:} Minimizing the physical carbon footprint and particulate emissions of the bus fleet.                 &
-    \textbf{Virtue Ethics:} Evaluated by the "character" of the institutional agent—demonstrating corporate virtue by actively prioritizing environmental stewardship over sheer operational throughput.                \\
-    \hline
+        \textbf{Ecological}                                                                                                           &
+        \textbf{Primary:} Local Urban Residents \newline
+        \textbf{Secondary:} Environmental Protection Agencies                                                                         &
+        \textbf{Harm Reduction:} Minimizing the physical carbon footprint and particulate emissions of the bus fleet.                 &
+        \textbf{Virtue Ethics:} Evaluated by the "character" of the institutional agent—demonstrating corporate virtue by actively prioritizing environmental stewardship over sheer operational throughput.                \\
+        \hline
 
-    \textbf{Political}                                                                                                            &
-    \textbf{Primary:} National Transport Authority (NTA) \newline
-    \textbf{Secondary:} Department of Transport                                                                                   &
-    \textbf{Accountability:} Ensuring algorithmic sovereignty does not usurp the state's responsibility for civic infrastructure. &
-    \textbf{Deontology:} The state holds an absolute, non-transferable duty to provide safe, equitable civic services to its citizens, regardless of the technological mediators used.                                  \\
-    \hline
+        \textbf{Political}                                                                                                            &
+        \textbf{Primary:} National Transport Authority (NTA) \newline
+        \textbf{Secondary:} Department of Transport                                                                                   &
+        \textbf{Accountability:} Ensuring algorithmic sovereignty does not usurp the state's responsibility for civic infrastructure. &
+        \textbf{Deontology:} The state holds an absolute, non-transferable duty to provide safe, equitable civic services to its citizens, regardless of the technological mediators used.                                  \\
+        \hline
 
-    \textbf{Legal}                                                                                                                &
-    \textbf{Primary:} Bus Drivers (Subject to tracking) \newline
-    \textbf{Secondary:} Data Protection Officers (DPOs)                                                                           &
-    \textbf{Right to Privacy:} Protecting employee and passenger telemetry from unwarranted surveillance or misuse (GDPR).        &
-    \textbf{Deontology:} Strict, rule-based adherence to legal frameworks and human rights, asserting that individuals are ends in themselves, not merely data points for algorithmic optimization.                     \\
-    \hline
-  \end{tabular}
-  \caption{STEEPL Stakeholder Identification and Ethical Mapping}
+        \textbf{Legal}                                                                                                                &
+        \textbf{Primary:} Bus Drivers (Subject to tracking) \newline
+        \textbf{Secondary:} Data Protection Officers (DPOs)                                                                           &
+        \textbf{Right to Privacy:} Protecting employee and passenger telemetry from unwarranted surveillance or misuse (GDPR).        &
+        \textbf{Deontology:} Strict, rule-based adherence to legal frameworks and human rights, asserting that individuals are ends in themselves, not merely data points for algorithmic optimization.                     \\
+        \hline
+    \end{tabular}
+    \caption{STEEPL Stakeholder Identification and Ethical Mapping}
 \end{table}
+
 \section*{2.1 Ethical Goals of the System}
 When evaluating the publicly stated ethical goals of the CitySwift platform, a critical distinction must be made between the corporate ethics of the company and the codified ethical goals of the algorithmic system itself. As is common in commercial AI deployments, \textbf{there are almost no explicitly stated ethical goals for the algorithmic system itself} within its technical or public-facing documentation; the system's documented parameters are overwhelmingly functional (e.g., maximizing throughput, minimizing dwell time) \cite{cityswift_gov_uk}.
 
@@ -356,43 +357,99 @@ However, at the corporate level, the organization heavily emphasizes environment
 \section*{2.2 Ethical Considerations}
 To critically evaluate the behavioral parameters of the CitySwift platform, three distinct schools of ethical thought discussed in the module—Utilitarianism, Deontology, and Virtue Ethics—are applied as a candidate pool \cite{intro_machine_ethics}. Using the stakeholders identified in Chapter 2, we establish the major ethical goals of the system under each school and dictate how the system ought to behave.
 
-\subsection*{1. Utilitarianism: Network Optimization and Distributive Justice}
+\subsection*{2.2.1 Utilitarianism: Network Optimization and Distributive Justice}
 \textbf{Major Ethical Goal:} To maximize aggregate network efficiency and passenger utility without inadvertently creating algorithmic transit deserts for marginalized communities (Stakeholders: Commuters \& Passengers, Transit Advocacy Groups).
 
 \begin{itemize}
-  \item \textbf{Relevant Variables:} Passenger demand volume (tap-ons), excess wait time (EWT), fleet utilization rates, and demographic transit-reliance indices for specific origin-destination flows.
-  \item \textbf{System Functionality:} The \textit{Evolve} module ingests historical Automatic Vehicle Location (AVL) and ticketing data to simulate scheduling scenarios, dynamically calculating which configuration yields the highest ratio of successful passenger journeys to operational fuel costs.
-  \item \textbf{What the System Will Do (or Not):} The system \textbf{will not} be permitted to dynamically reallocate the entirety of the fleet away from low-density, rural, or economically deprived routes simply because high-density urban corridors offer mathematically higher aggregate throughput. The system \textbf{will} enforce a "minimum service baseline" constraint across all routes, regardless of raw profitability or volume.
-  \item \textbf{Relevant Ethical Principle cited:} This decision applies \textbf{Rule Utilitarianism} combined with the principle of \textbf{Distributive Justice} \cite{intro_machine_ethics}. While strict Act Utilitarianism would ruthlessly cut low-volume routes to maximize overall network numbers, Rule Utilitarianism recognizes that establishing a rule guaranteeing basic mobility access for all demographics ultimately generates greater long-term societal utility and trust in public infrastructure.
+    \item \textbf{Relevant Variables:} Passenger demand volume (tap-ons), excess wait time (EWT), fleet utilization rates, and demographic transit-reliance indices for specific origin-destination flows.
+    \item \textbf{System Functionality:} The \textit{Evolve} module ingests historical Automatic Vehicle Location (AVL) and ticketing data to simulate scheduling scenarios, dynamically calculating which configuration yields the highest ratio of successful passenger journeys to operational fuel costs.
+    \item \textbf{What the System Will Do (or Not):} The system \textbf{will not} be permitted to dynamically reallocate the entirety of the fleet away from low-density, rural, or economically deprived routes simply because high-density urban corridors offer mathematically higher aggregate throughput. The system \textbf{will} enforce a "minimum service baseline" constraint across all routes, regardless of raw profitability or volume.
+    \item \textbf{Relevant Ethical Principle cited:} This decision applies \textbf{Rule Utilitarianism} combined with the principle of \textbf{Distributive Justice} \cite{intro_machine_ethics}. While strict Act Utilitarianism would ruthlessly cut low-volume routes to maximize overall network numbers, Rule Utilitarianism recognizes that establishing a rule guaranteeing basic mobility access for all demographics ultimately generates greater long-term societal utility and trust in public infrastructure.
 \end{itemize}
 
-\subsection*{2. Deontology: Algorithmic Sovereignty and Contractual Fairness}
+\subsection*{2.2.2 Deontology: Algorithmic Sovereignty and Contractual Fairness}
 \textbf{Major Ethical Goal:} To ensure that automated financial penalties and delay categorizations are verifiable, respecting the fundamental right to transparent due process (Stakeholders: Transit Operators, CitySwift Engineers, DPOs).
 
 \begin{itemize}
-  \item \textbf{Relevant Variables:} Delay location coordinates, incident categorization flags (operator vs. external), traffic congestion telemetry, and financial penalty multipliers.
-  \item \textbf{System Functionality:} The system automatically processes timing anomalies and applies a categorization matrix to determine the root cause of network friction (e.g., driver error vs. heavy traffic), reporting this to the franchising authority to enforce Service Level Agreements (SLAs).
-  \item \textbf{What the System Will Do (or Not):} The system \textbf{will not} issue a definitive "operator-controlled" delay categorization if the underlying machine learning prediction falls below a 95\% confidence threshold, nor will it rely solely on sub-symbolic "black box" neural networks for this classification. The system \textbf{will} fallback to a human-in-the-loop audit trigger if the delay cannot be explicitly mapped using human-readable symbolic logic.
-  \item \textbf{Relevant Ethical Principle cited:} This decision is grounded in the \textbf{Deontological Duty of Transparency and Fairness} \cite{intro_machine_ethics}. Deontology dictates that individuals and organizations must not be treated merely as a means to an end (in this case, streamlined municipal reporting). The operator holds a strict right to auditable fairness; therefore, the system has a categorical imperative to ensure its punitive outputs are hermeneutically reverse-engineerable.
+    \item \textbf{Relevant Variables:} Delay location coordinates, incident categorization flags (operator vs. external), traffic congestion telemetry, and financial penalty multipliers.
+    \item \textbf{System Functionality:} The system automatically processes timing anomalies and applies a categorization matrix to determine the root cause of network friction (e.g., driver error vs. heavy traffic), reporting this to the franchising authority to enforce Service Level Agreements (SLAs).
+    \item \textbf{What the System Will Do (or Not):} The system \textbf{will not} issue a definitive "operator-controlled" delay categorization if the underlying machine learning prediction falls below a 95\% confidence threshold, nor will it rely solely on sub-symbolic "black box" neural networks for this classification. The system \textbf{will} fallback to a human-in-the-loop audit trigger if the delay cannot be explicitly mapped using human-readable symbolic logic.
+    \item \textbf{Relevant Ethical Principle cited:} This decision is grounded in the \textbf{Deontological Duty of Transparency and Fairness} \cite{intro_machine_ethics}. Deontology dictates that individuals and organizations must not be treated merely as a means to an end (in this case, streamlined municipal reporting). The operator holds a strict right to auditable fairness; therefore, the system has a categorical imperative to ensure its punitive outputs are hermeneutically reverse-engineerable.
 \end{itemize}
 
-\subsection*{3. Virtue Ethics: Ecological Character vs. The Ethics of Care}
+\subsection*{2.2.3 Virtue Ethics: Ecological Character vs. The Ethics of Care}
 \textbf{Major Ethical Goal:} To embody the virtues of environmental stewardship while simultaneously maintaining the virtue of compassion for vulnerable human passengers (Stakeholders: Local Urban Residents, Commuters).
 
 \begin{itemize}
-  \item \textbf{Relevant Variables:} Kilograms of $CO_{2}$ emissions saved, route energy efficiency indices, dead-mileage metrics, and passenger wait-time during severe weather conditions.
-  \item \textbf{System Functionality:} The platform incorporates carbon output parameters into its optimization algorithms, recommending timetable adjustments and fleet distributions that drastically reduce fuel consumption and non-revenue-generating idling times.
-  \item \textbf{What the System Will Do (or Not):} The system \textbf{will} optimize for absolute minimum fuel consumption and carbon output during standard operational parameters. However, the system \textbf{will not} enforce strict anti-idling or extended headway (wait time) optimizations during extreme weather events (e.g., freezing temperatures or severe storms). During these events, the system \textbf{will} prioritize rapid passenger boarding and vehicle climate-control allowances over marginal carbon savings.
-  \item \textbf{Relevant Ethical Principle cited:} This decision utilizes \textbf{Virtue Ethics}, specifically balancing the virtue of \textbf{Ecological Stewardship} with the \textbf{Virtue of Care/Compassion} \cite{relational_ethics}. An ethically virtuous autonomous agent must possess practical wisdom (\textit{phronesis}); it recognizes that while environmental conservation is a profound virtue, rigidly optimizing for carbon reduction at the expense of leaving passengers exposed to hazardous conditions demonstrates a lack of holistic institutional character.
+    \item \textbf{Relevant Variables:} Kilograms of $CO_{2}$ emissions saved, route energy efficiency indices, dead-mileage metrics, and passenger wait-time during severe weather conditions.
+    \item \textbf{System Functionality:} The platform incorporates carbon output parameters into its optimization algorithms, recommending timetable adjustments and fleet distributions that drastically reduce fuel consumption and non-revenue-generating idling times.
+    \item \textbf{What the System Will Do (or Not):} The system \textbf{will} optimize for absolute minimum fuel consumption and carbon output during standard operational parameters. However, the system \textbf{will not} enforce strict anti-idling or extended headway (wait time) optimizations during extreme weather events (e.g., freezing temperatures or severe storms). During these events, the system \textbf{will} prioritize rapid passenger boarding and vehicle climate-control allowances over marginal carbon savings.
+    \item \textbf{Relevant Ethical Principle cited:} This decision utilizes \textbf{Virtue Ethics}, specifically balancing the virtue of \textbf{Ecological Stewardship} with the \textbf{Virtue of Care/Compassion} \cite{relational_ethics}. An ethically virtuous autonomous agent must possess practical wisdom (\textit{phronesis}); it recognizes that while environmental conservation is a profound virtue, rigidly optimizing for carbon reduction at the expense of leaving passengers exposed to hazardous conditions demonstrates a lack of holistic institutional character.
 \end{itemize}
 
-\subsection*{Mapping to Implementation}
-To demonstrate the technical feasibility of these considerations, Chapter 3 formalizes these three schools into six distinct Z3-based constraints:
+\section*{2.3 Values}
+
+The introduction of the CitySwift predictive platform into the Bus Éireann network forces a convergence of disparate stakeholder values. To ensure the system operates ethically, we must explicitly map these values, analyze their alignment with our chosen ethical frameworks, and establish a hierarchy for algorithmic negotiation.
+
+\subsection*{Stakeholder Values and Ethical Alignment}
+Building upon the STEEPL framework established in Section 2.1, the core values of the primary stakeholders align with our ethical schools of thought as follows:
+
+\paragraph{Commuters \& Passengers (Social)}
 \begin{itemize}
-  \item \textbf{Utilitarianism:} Implemented via \textit{Case 1 (Minimum Service)} and \textit{Case 5 (Carbon-Optimization)}.
-  \item \textbf{Deontology:} Implemented via \textit{Case 2 (Penalty Confidence)} and \textit{Case 6 (Driver Fatigue)}.
-  \item \textbf{Virtue Ethics:} Implemented via \textit{Case 3 (Weather Adaptation)} and \textit{Case 4 (Transit Desert Prevention)}.
+    \item \textbf{Values:} Reliability, affordable mobility, safety, and equitable access to the network regardless of geographic location.
+    \item \textbf{Ethical Alignment:} Strongly aligns with Relational Ethics and Distributive Justice, demanding that vulnerable or rural populations are not mathematically marginalized by the algorithm.
 \end{itemize}
+
+\paragraph{CitySwift Engineers (Technical)}
+\begin{itemize}
+    \item \textbf{Values:} Technical innovation, predictive accuracy, and system verifiability.
+    \item \textbf{Ethical Alignment:} Aligns with Deontology, as engineers possess a professional duty to ensure the system’s logic is transparent and not an unaccountable ``black box''.
+\end{itemize}
+
+\paragraph{Transit Operators / Bus Éireann (Economic)}
+\begin{itemize}
+    \item \textbf{Values:} Maximized throughput, resource efficiency, cost reduction, and fairness in algorithmic penalty application.
+    \item \textbf{Ethical Alignment:} Driven fundamentally by Utilitarianism (maximizing network utility/profit), but constrained by the Deontological right to fair, transparent contract execution regarding delay categorizations.
+\end{itemize}
+
+\paragraph{Local Urban Residents (Ecological)}
+\begin{itemize}
+    \item \textbf{Values:} Clean air, reduced particulate emissions, and environmental sustainability.
+    \item \textbf{Ethical Alignment:} Reflects Virtue Ethics, specifically the virtue of ecological stewardship and harm reduction.
+\end{itemize}
+
+\paragraph{National Transport Authority / NTA (Political)}
+\begin{itemize}
+    \item \textbf{Values:} The public good, infrastructural accountability, and civic duty.
+    \item \textbf{Ethical Alignment:} Anchored in Deontology, asserting the state's non-transferable obligation to provide safe civic services.
+\end{itemize}
+
+\paragraph{Bus Drivers (Legal)}
+\begin{itemize}
+    \item \textbf{Values:} Workplace fairness, job security, and the right to privacy.
+    \item \textbf{Ethical Alignment:} Grounded in Deontology (and GDPR frameworks), ensuring employees are treated as human agents rather than easily surveilled data points for optimization.
+\end{itemize}
+
+\subsection*{Value Negotiation}
+
+Because CitySwift optimizes a physical transport network with finite buses, fuel, and drivers, several stakeholder values exist in direct tension and require algorithmic negotiation:
+
+\paragraph{Network Efficiency (Economic) vs. Equitable Access (Social)}
+Bus Éireann values maximizing the aggregate number of successful passenger journeys per liter of fuel (Utilitarianism). If left unconstrained, the system's \textit{Evolve} module might mathematically recommend reallocating buses away from low-density routes to highly profitable urban corridors. This must be negotiated against the commuters' value of equitable access, requiring the system to enforce a ``minimum service baseline'' to prevent algorithmic transit deserts.
+
+\paragraph{Ecological Stewardship (Ecological) vs. Ethics of Care (Social)}
+Residents and the company value carbon reduction. The system targets dead mileage and prolonged idling to save fuel. However, this ecological value must be negotiated against compassion: during freezing weather, the algorithm must temporarily suspend strict anti-idling optimization to allow buses to maintain internal heating for vulnerable passengers.
+
+\paragraph{Data Integration (Technical) vs. Worker Privacy (Legal)}
+CitySwift engineers and operators value high-fidelity telemetry tracking to create a ``single source of truth'' for predictive analytics. This requires tracking the precise location and driving patterns of bus drivers. This must be negotiated against drivers' legal value of workplace privacy, requiring data anonymization protocols and strict limits on using algorithmic tracking for disciplinary purposes.
+
+\subsection*{Prioritization of Values}
+
+When values fundamentally clash, the algorithm must possess a clear hierarchy of prioritization. Because public transportation is a civic lifeline rather than a purely capitalist enterprise, the system must prioritize the values of the National Transport Authority (civic duty and accountability) and the commuters (equitable access) above pure economic efficiency.
+
+While the system is functionally designed as a Utilitarian optimizer, its ethical constraints must be Deontological. An algorithmic scheduling recommendation—no matter how mathematically efficient or profitable—must never be executed if it violates the fundamental privacy rights of drivers or abandons marginalized communities. Furthermore, the Virtue of Care (human safety and comfort) must always override the Virtue of Ecological Stewardship (carbon savings) in critical edge cases such as extreme weather.
+
+
 %%%%%%%%
 
 \chapter{Implementation}
@@ -403,7 +460,7 @@ Our implementation strategy focuses on formalizing the ethical considerations id
 
 By encoding ethical principles as "hard constraints" or "optimization goals," we can mathematically validate whether a proposed network configuration (functional goal) violates our ethical baseline. This approach bridges the gap between high-level ethical schools of thought and executable code.
 
-\section{Formal Ethical Constraints (6 Cases)}
+\subsection{Formal Ethical Constraints (6 Cases)}
 
 Using the Z3 library, we implemented the following six cases, each mapping to a specific stakeholder and ethical principle:
 
@@ -434,8 +491,8 @@ prioritize_passenger_care = z3.Bool('prioritize_passenger_care')
 optimizer.add(prioritize_passenger_care == (temperature < 0))
 \end{lstlisting}
 
-\subsection{Case 4: Transit Desert Prevention (Relational Ethics / Virtue Ethics)}
-Ensuring equitable access across all urban zones. Every zone must retain at least 60\% of its total baseline service capacity during any optimization step, embodying the virtue of communal care.
+\subsection{Case 4: Transit Desert Prevention (Relational Ethics)}
+Ensuring equitable access across all urban zones. Every zone must retain at least 60\% of its total baseline service capacity during any optimization step.
 \begin{lstlisting}[style=py]
 # Zone must retain at least 60% of baseline total capacity
 for z in range(num_zones):
@@ -461,17 +518,17 @@ total_hours_limit = num_drivers * 8
 optimizer.add(z3.Sum(freq_vars) * 1.2 <= total_hours_limit)
 \end{lstlisting}
 
+\section{Points of Conflict}
+Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script. The solver successfully identifies configurations that satisfy all constraints simultaneously, or flags "UNSAT" if ethical requirements (e.g., driver safety) are impossible to meet with the available fleet.
+
 \section{Evidence}
 Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script. The solver successfully identifies configurations that satisfy all constraints simultaneously, or flags "UNSAT" if ethical requirements (e.g., driver safety) are impossible to meet with the available fleet.
 
 \begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{z3_success_output.png}
-  \caption{Output showing Z3 successfully reconciling 6 ethical constraints with network demand.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{z3_success_output.png}
+    \caption{Output showing Z3 successfully reconciling 6 ethical constraints with network demand.}
 \end{figure}
-
-
-%%%%%%%%
 
 %%%%%%%%
 \chapter{ChatGPT Says...}
