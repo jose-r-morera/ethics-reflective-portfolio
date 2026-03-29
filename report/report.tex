@@ -582,6 +582,9 @@ Audit Status: False (Confidence 23/25)
 GDPR Status: Anonymized
 \end{lstlisting}
 
+\paragraph{Logic Analysis}
+The solver output demonstrates a successful reconciliation between deontological safety rules and utilitarian efficiency. With a total fleet limit of 60 buses, the engine first satisfies the \textit{Deontological} mandates: Route 0 and Route 2 (Hospital/Critical) are allocated 2 buses each to meet the 50\% minimum service baseline (Case 1). The remaining 56 buses are then allocated to Route 6 (the highest demand corridor at 300 passengers), maximizing the system-wide \textit{Utilitarian} utility (Case 5). This result proves that the formal logic gate effectively protects vulnerable service areas while allowing the AI to optimize the remaining capacity for the common good.
+
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{z3_success_output.png}

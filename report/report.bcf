@@ -2356,4 +2356,63 @@
         <bcf:field>title</bcf:field>
       </bcf:constraint>
     </bcf:constraints>
-   
+    <bcf:constraints>
+      <bcf:constraint type="data" datatype="isbn">
+        <bcf:field>isbn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="issn">
+        <bcf:field>issn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="ismn">
+        <bcf:field>ismn</bcf:field>
+      </bcf:constraint>
+      <bcf:constraint type="data" datatype="pattern" pattern="(?:sf|sm|sn|pf|pm|pn|pp)">
+        <bcf:field>gender</bcf:field>
+      </bcf:constraint>
+    </bcf:constraints>
+  </bcf:datamodel>
+  <!-- CITATION DATA -->
+  <!-- SECTION 0 -->
+  <bcf:bibdata section="0">
+    <bcf:datasource type="file" datatype="bibtex" glob="false">references.bib</bcf:datasource>
+  </bcf:bibdata>
+  <bcf:section number="0">
+    <bcf:citekey order="1" intorder="1">cityswift_bus_eireann</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">galwaybayfm_cityswift</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">cityswift_gov_uk</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">intro_prop_logic</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">cityswift_bus_eireann</bcf:citekey>
+    <bcf:citekey order="6" intorder="2">cityswift_gov_uk</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">relational_ethics</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">cityswift_gov_uk</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">cityswift_esg</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">cityswift_esg</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">intro_machine_ethics</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">relational_ethics</bcf:citekey>
+  </bcf:section>
+  <!-- SORTING TEMPLATES -->
+  <bcf:sortingtemplate name="none">
+    <bcf:sort order="1">
+      <bcf:sortitem order="1">citeorder</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2">
+      <bcf:sortitem order="1">intciteorder</bcf:sortitem>
+    </bcf:sort>
+  </bcf:sortingtemplate>
+  <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="none/global//global/global/global"
+                type="entry"
+                sortingtemplatename="none"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global"
+                namehashtemplatename="global">
+  </bcf:datalist>
+</bcf:controlfile>
