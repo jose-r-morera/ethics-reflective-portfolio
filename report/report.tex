@@ -460,9 +460,9 @@ Our implementation strategy focuses on formalizing the ethical considerations id
 
 By encoding ethical principles as "hard constraints" or "optimization goals," we can mathematically validate whether a proposed network configuration (functional goal) violates our ethical baseline. This approach bridges the gap between high-level ethical schools of thought and executable code.
 
-\subsection{Formal Ethical Constraints (6 Cases)}
+\subsection{Formal Ethical Constraints (8 Cases)}
 
-Using the Z3 library, we implemented the following six cases, each mapping to a specific stakeholder and ethical principle:
+Using the Z3 library, we implemented the following eight cases, each mapping to a specific stakeholder and ethical principle:
 
 \subsection{Case 1: Minimum Service Baseline (Utilitarianism)}
 To prevent "transit deserts," critical routes (e.g., those serving hospitals) are constrained to maintain at least 50\% of their baseline frequency, regardless of the system's drive for efficiency.
@@ -534,6 +534,7 @@ consent_given = z3.Bool('user_consent_granted')
 use_individual_data = z3.Bool('use_individual_travel_history')
 optimizer.add(z3.Implies(z3.Not(consent_given), 
                         z3.Not(use_individual_data)))
+optimizer.add(consent_given == False) # Scenario
 \end{lstlisting}
 
 \section{Points of Conflict}
