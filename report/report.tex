@@ -465,7 +465,7 @@ By encoding ethical principles as "hard constraints" or "optimization goals," we
 \subsubsection{Data Definitions}
 To ensure clarity, the following logical predicates define the core parameters of our CitySwift model:
 \begin{itemize}
-    \item \textbf{Contractual Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
+    \item \textbf{Reference Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
     \item \textbf{Ethical Minimum (Floor)}: Defined by Case 1 and Case 4, these are the absolute service floors (e.g., 50\% for hospital routes, 60\% for urban zones) that the AI is strictly forbidden from crossing, even when optimizing for efficiency.
     \item \textbf{Passenger Demand}: The predicted volume of commuters for a route, used to drive utilitarian optimization across the remaining fleet capacity.
     \item \textbf{Route Criticality}: A binary flag identifying essential infrastructure (hospitals, schools) that triggers the highest level of deontological protection.
@@ -576,28 +576,43 @@ Validation of the functional and ethical goals was achieved by executing the \te
 Executing CitySwift Ethical Logic Engine...
 Solver Result: sat
 
-SUCCESSFUL. Ethical constraints are satisfied.
+SUCCESSFUL. All ethical constraints are satisfied.
 
-Route ID   | Allocated Frequency  | Passenger Demand   | Status
----------------------------------------------------------------
-Route 0       | 6           buses/hr | 100            pax |  [CRITICAL]
-Route 1       | 0           buses/hr | 80             pax | 
-Route 2       | 2           buses/hr | 120            pax |  [CRITICAL]
-Route 3       | 6           buses/hr | 200            pax | 
-Route 4       | 6           buses/hr | 50             pax | 
-Route 5       | 0           buses/hr | 30             pax | 
-Route 6       | 34          buses/hr | 300            pax | 
-Route 7       | 0           buses/hr | 20             pax | 
-Route 8       | 6           buses/hr | 150            pax | 
-Route 9       | 0           buses/hr | 10             pax | 
+Route ID  | Zone     | Allocated Freq   | Demand     | Status
+-------------------------------------------------------------
+Route 0    | Z0       | 6           buses/hr | 100    pax |  [CRITICAL]
+Route 1    | Z0       | 0           buses/hr | 80     pax | 
+Route 2    | Z1       | 2           buses/hr | 120    pax |  [CRITICAL]
+Route 3    | Z1       | 6           buses/hr | 200    pax | 
+Route 4    | Z2       | 6           buses/hr | 50     pax | 
+Route 5    | Z2       | 0           buses/hr | 30     pax | 
+Route 6    | Z3       | 34          buses/hr | 300    pax | 
+Route 7    | Z3       | 0           buses/hr | 20     pax | 
+Route 8    | Z4       | 6           buses/hr | 150    pax | 
+Route 9    | Z4       | 0           buses/hr | 10     pax | 
 
-Weather Care Mode: True
-Audit Status: False (Confidence 23/25)
-GDPR Status: Anonymized
+Zone Coverage Summary (Distributive Justice):
+---------------------------------------------
+Z0      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
+Z1      : 8.0/12.0 buses/hr (66.7%) - [SATISFIED]
+Z2      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
+Z3      : 34.0/14.0 buses/hr (242.9%) - [SATISFIED]
+Z4      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
+
+Ethical Governance Status:
+- [Case 1] Hospital/School Protection: True
+- [Case 4] Transit Desert Prevention: Minimum 60% coverage enforced per zone.
+- [Case 5] Utilitarian Optimization: Efficiency maximized (Score: 13440)
+- [Case 6] Driver Safety: Hours constrained to legal limits.
+
+Operational Metadata:
+- Weather Care Mode: True
+- Audit Status: False (Confidence 23/25)
+- GDPR Status: Anonymized
 \end{lstlisting}
 
 \paragraph{Logic Analysis}
-The solver output demonstrates a successful reconciliation between deontological safety rules and distributive justice. With a total fleet limit of 60 buses, the engine first satisfies the \textit{Deontological} mandates: Route 0 and Route 2 (Hospital/Critical) are protected. Crucially, the engine also enforces the \textbf{Ethical Minimum} (Case 4), ensuring that Zone 0 receives a total of 6 buses/hr (60\% of its 10-bus baseline) and other zones receive proportional minimums. The remaining capacity (34 buses/hr) is then allocated to Route 6 (the highest demand corridor), maximizing system-wide \textit{Utilitarian} utility (Case 5). This result proves that the formal logic gate effectively protects vulnerable communities while allowing for resource optimization.
+The expanded solver output provides a comprehensive audit trail of the ethical reconciliation process. By explicitly displaying the \textbf{Zone Coverage Summary}, the engine proves that distributive justice (Case 4) is mathematically satisfied, with every urban zone receiving at least 60\% of its \textbf{Reference Baseline}. Furthermore, the \textbf{Ethical Governance Status} section confirms that both deontological minimums (Case 1) and utilitarian optimization (Case 5) are active and successfully reconciled. This level of transparency ensures that the system's decisions are explainable, verifiable, and ethically grounded for all stakeholders.
 
 \begin{figure}[h!]
   \centering
