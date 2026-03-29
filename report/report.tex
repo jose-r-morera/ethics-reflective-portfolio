@@ -465,9 +465,10 @@ By encoding ethical principles as "hard constraints" or "optimization goals," we
 \subsubsection{Data Definitions}
 To ensure clarity, the following logical predicates define the core parameters of our CitySwift model:
 \begin{itemize}
-    \item \textbf{Baseline Frequency}: The standard service level (buses per hour) mandated by the public transport contract. This serves as the reference point for assessing service drops and distributive justice.
-    \item \textbf{Passenger Demand}: The predicted volume of commuters for a route. The system uses this value to prioritize high-capacity corridors in pursuit of utilitarian efficiency.
-    \item \textbf{Route Criticality}: A binary flag identifying routes that serve essential infrastructure (e.g., hospitals, schools). Critical routes trigger stringent deontological safety rules.
+    \item \textbf{Contractual Baseline}: The ideal service level (buses per hour) mandated by the franchise agreement. In this model, the baseline represents the "100\% target" from which ethical deviations are measured.
+    \item \textbf{Ethical Minimum (Floor)}: Defined by Case 1 and Case 4, these are the absolute service floors (e.g., 50\% for hospital routes, 60\% for urban zones) that the AI is strictly forbidden from crossing, even when optimizing for efficiency.
+    \item \textbf{Passenger Demand}: The predicted volume of commuters for a route, used to drive utilitarian optimization across the remaining fleet capacity.
+    \item \textbf{Route Criticality}: A binary flag identifying essential infrastructure (hospitals, schools) that triggers the highest level of deontological protection.
 \end{itemize}
 
 \subsection{Formal Ethical Constraints (8 Cases)}
@@ -579,15 +580,15 @@ SUCCESSFUL. Ethical constraints are satisfied.
 
 Route ID   | Allocated Frequency  | Passenger Demand   | Status
 ---------------------------------------------------------------
-Route 0       | 2           buses/hr | 100            pax |  [CRITICAL]
+Route 0       | 6           buses/hr | 100            pax |  [CRITICAL]
 Route 1       | 0           buses/hr | 80             pax | 
 Route 2       | 2           buses/hr | 120            pax |  [CRITICAL]
-Route 3       | 0           buses/hr | 200            pax | 
-Route 4       | 0           buses/hr | 50             pax | 
+Route 3       | 6           buses/hr | 200            pax | 
+Route 4       | 6           buses/hr | 50             pax | 
 Route 5       | 0           buses/hr | 30             pax | 
-Route 6       | 56          buses/hr | 300            pax | 
+Route 6       | 34          buses/hr | 300            pax | 
 Route 7       | 0           buses/hr | 20             pax | 
-Route 8       | 0           buses/hr | 150            pax | 
+Route 8       | 6           buses/hr | 150            pax | 
 Route 9       | 0           buses/hr | 10             pax | 
 
 Weather Care Mode: True
@@ -596,7 +597,7 @@ GDPR Status: Anonymized
 \end{lstlisting}
 
 \paragraph{Logic Analysis}
-The solver output demonstrates a successful reconciliation between deontological safety rules and utilitarian efficiency. With a total fleet limit of 60 buses, the engine first satisfies the \textit{Deontological} mandates: Route 0 and Route 2 (Hospital/Critical) are allocated 2 buses each to meet the 50\% minimum service baseline (Case 1). The remaining 56 buses are then allocated to Route 6 (the highest demand corridor at 300 passengers), maximizing the system-wide \textit{Utilitarian} utility (Case 5). This result proves that the formal logic gate effectively protects vulnerable service areas while allowing the AI to optimize the remaining capacity for the common good.
+The solver output demonstrates a successful reconciliation between deontological safety rules and distributive justice. With a total fleet limit of 60 buses, the engine first satisfies the \textit{Deontological} mandates: Route 0 and Route 2 (Hospital/Critical) are protected. Crucially, the engine also enforces the \textbf{Ethical Minimum} (Case 4), ensuring that Zone 0 receives a total of 6 buses/hr (60\% of its 10-bus baseline) and other zones receive proportional minimums. The remaining capacity (34 buses/hr) is then allocated to Route 6 (the highest demand corridor), maximizing system-wide \textit{Utilitarian} utility (Case 5). This result proves that the formal logic gate effectively protects vulnerable communities while allowing for resource optimization.
 
 \begin{figure}[h!]
   \centering
