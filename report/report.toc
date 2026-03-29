@@ -30,8 +30,8 @@
 \contentsline {paragraph}{Predictable Reliability vs. Dynamic Throughput}{15}{section*.26}%
 \contentsline {paragraph}{Data Privacy vs. Predictive Precision}{15}{section*.27}%
 \contentsline {section}{\numberline {3.3}Evidence}{16}{section.3.3}%
-\contentsline {paragraph}{Logic Analysis}{17}{section*.28}%
-\contentsline {chapter}{\numberline {4}ChatGPT Says...}{19}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Teammate \#1 Says...}{20}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Teammate \#2 Says...}{21}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Conclusions}{22}{chapter.7}%
+\contentsline {paragraph}{Logic Analysis}{16}{section*.28}%
+\contentsline {chapter}{\numberline {4}ChatGPT Says...}{18}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Teammate \#1 Says...}{19}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Teammate \#2 Says...}{20}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Conclusions}{21}{chapter.7}%

@@ -570,71 +570,17 @@ While the system aims to dynamically eliminate "bus bunching" through real-time 
 The system’s predictive accuracy (Technical Value) depends on high-dimensional datasets, including ticketing and origin-destination flows. However, this creates a Deontological conflict with the passenger's right to privacy and GDPR-mandated data minimization. A purely optimized system would use personalized travel histories to anticipate individual needs. We revisited this in Case 8 by formalizing a consent-based logical gate: unless explicit user consent is registered, the system is strictly limited to using aggregated, anonymized zone data, prioritizing individual privacy over marginal gains in predictive precision.
 
 \section{Evidence}
-Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script. The solver leverages First-Order Logic (FOL) predicates and soft-constraint optimization to reconcile all 8 ethical cases. The successful ethical reconciliation is shown in the terminal output below, following the formal style of the module's logical proofs.
-
-\begin{lstlisting}[style=mystyle, caption={Terminal Output of CitySwift Ethical Logic Engine}]
-Executing CitySwift Ethical Logic Engine...
-Scenario Parameters:
-- Total Fleet Limit: 60 buses
-- Driver Capacity: 20 drivers (8.0 hrs/shift)
-- Input Mock Routes [ID | Zone | Base | Demand | Critical]:
-  R0  | Z0   | 4    | 100    | Yes
-  R1  | Z0   | 6    | 80     | No
-  R2  | Z1   | 4    | 120    | Yes
-  R3  | Z1   | 8    | 200    | No
-  R4  | Z2   | 5    | 50     | No
-  R5  | Z2   | 5    | 30     | No
-  R6  | Z3   | 10   | 300    | No
-  R7  | Z3   | 4    | 20     | No
-  R8  | Z4   | 6    | 150    | No
-  R9  | Z4   | 4    | 10     | No
-
-Executing CitySwift Ethical Logic Engine...
-Solver Result: sat
-
-SUCCESSFUL. All ethical constraints are satisfied.
-
-Route ID  | Zone     | Allocated (Base)   | Demand     | Status
--------------------------------------------------------------
-Route 0    | Z0       | 6  (4 ) buses/hr | 100    pax |  [CRITICAL]
-Route 1    | Z0       | 0  (6 ) buses/hr | 80     pax | 
-Route 2    | Z1       | 2  (4 ) buses/hr | 120    pax |  [CRITICAL]
-Route 3    | Z1       | 6  (8 ) buses/hr | 200    pax | 
-Route 4    | Z2       | 6  (5 ) buses/hr | 50     pax | 
-Route 5    | Z2       | 0  (5 ) buses/hr | 30     pax | 
-Route 6    | Z3       | 34 (10) buses/hr | 300    pax | 
-Route 7    | Z3       | 0  (4 ) buses/hr | 20     pax | 
-Route 8    | Z4       | 6  (6 ) buses/hr | 150    pax | 
-Route 9    | Z4       | 0  (4 ) buses/hr | 10     pax | 
-
-Zone Coverage Summary (Distributive Justice):
----------------------------------------------
-Z0      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
-Z1      : 8.0/12.0 buses/hr (66.7%) - [SATISFIED]
-Z2      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
-Z3      : 34.0/14.0 buses/hr (242.9%) - [SATISFIED]
-Z4      : 6.0/10.0 buses/hr (60.0%) - [SATISFIED]
-
-Ethical Governance Status:
-- [Case 1] Hospital/School Protection: True
-- [Case 4] Transit Desert Prevention: Minimum 60% coverage enforced per zone.
-- [Case 5] Utilitarian Optimization: Efficiency maximized (Score: 13440)
-- [Case 6] Driver Safety: Avg workload 3.6 hrs/shift (Limit: 8.0).
-
-Operational Metadata:
-- Weather Care Mode: True
-- Audit Status: False (Confidence 23/25)
-- GDPR Status: Anonymized
-\end{lstlisting}
-
-\paragraph{Logic Analysis}
-The expanded solver output provides a comprehensive audit trail of the ethical reconciliation process. By explicitly displaying the \textbf{Zone Coverage Summary}, the engine proves that distributive justice (Case 4) is mathematically satisfied, with every urban zone receiving at least 60\% of its \textbf{Reference Baseline}. Furthermore, the \textbf{Ethical Governance Status} section confirms that both deontological minimums (Case 1) and utilitarian optimization (Case 5) are active and successfully reconciled. This level of transparency ensures that the system's decisions are explainable, verifiable, and ethically grounded for all stakeholders.
+Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script. The solver leverages First-Order Logic (FOL) predicates and soft-constraint optimization to reconcile all 8 ethical cases. The successful ethical reconciliation, including the full scenario context and distributive justice audit, is shown in the actual terminal screenshot below (Figure \ref{fig:z3_output}).
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.8\textwidth]{z3_success_output.png}
-  \caption{Output showing Z3 successfully reconciling 8 ethical constraints using FOL and Soft-Constraints.}
+  \includegraphics[width=0.95\textwidth]{z3_success_output.png}
+  \caption{High-fidelity terminal output of the CitySwift Ethical Logic Engine, showing successful reconciliation of Deontological, Utilitarian, and Distributive constraints.}
+  \label{fig:z3_output}
 \end{figure}
+
+\paragraph{Logic Analysis}
+The terminal screenshot provides a comprehensive audit trail of the ethical reconciliation process. By explicitly displaying the \textbf{Zone Coverage Summary}, the engine proves that distributive justice (Case 4) is mathematically satisfied, with every urban zone receiving at least 60\% of its \textbf{Reference Baseline}. Furthermore, the \textbf{Ethical Governance Status} section confirms that both deontological minimums (Case 1) and utilitarian optimization (Case 5) are active and successfully reconciled. This level of transparency ensures that the system's decisions are explainable, verifiable, and ethically grounded for all stakeholders.
 
 %%%%%%%%
 \chapter{ChatGPT Says...}
