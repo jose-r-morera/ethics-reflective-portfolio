@@ -16,5 +16,192 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{cityswift_bus_eireann}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=483a219c7112c2c970e8c371f2312b1f}{%
+           family={{CitySwift}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {CitySwift Press Releases}%
+      }
+      \strng{namehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{bibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorbibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authornamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{CitySwift announces partnership with Bus Éireann to improve performance on bus networks across Ireland}
+      \field{year}{2024}
+    \endentry
+    \entry{galwaybayfm_cityswift}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=0dd8c75c0db872770b091b76cf294489}{%
+           family={{GalwayBayFM}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {GalwayBayFM}%
+      }
+      \strng{namehash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{fullhash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{fullhashraw}{0dd8c75c0db872770b091b76cf294489}
+      \strng{bibnamehash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{authorbibnamehash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{authornamehash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{authorfullhash}{0dd8c75c0db872770b091b76cf294489}
+      \strng{authorfullhashraw}{0dd8c75c0db872770b091b76cf294489}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{11}
+      \field{month}{4}
+      \field{title}{Galway-based data company marks 2nd major expansion this year}
+      \field{year}{2025}
+      \field{dateera}{ce}
+    \endentry
+    \entry{cityswift_gov_uk}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=483a219c7112c2c970e8c371f2312b1f}{%
+           family={{CitySwift}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {GOV.UK Digital Marketplace}%
+      }
+      \strng{namehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{bibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorbibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authornamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Service Definition Document - G-Cloud 14}
+      \field{year}{2024}
+    \endentry
+    \entry{intro_machine_ethics}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{hash=fbcf8f87bc1b3daeaf1816a98034f6cf}{%
+           family={Nallur},
+           familyi={N\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{fullhash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{fullhashraw}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{bibnamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorbibnamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authornamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorfullhash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorfullhashraw}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{COMP41820 Module, School of Computer Science, University College Dublin}
+      \field{title}{Introduction to AI \& Ethics: From Theory to Practice}
+      \field{year}{2026}
+    \endentry
+    \entry{intro_prop_logic}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{hash=fbcf8f87bc1b3daeaf1816a98034f6cf}{%
+           family={Nallur},
+           familyi={N\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{fullhash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{fullhashraw}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{bibnamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorbibnamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authornamehash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorfullhash}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \strng{authorfullhashraw}{fbcf8f87bc1b3daeaf1816a98034f6cf}
+      \field{extraname}{2}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{COMP41820 Module, School of Computer Science, University College Dublin}
+      \field{title}{The Logic of Autonomous Agency / Propositional Logic}
+      \field{year}{2026}
+    \endentry
+    \entry{relational_ethics}{unpublished}{}{}
+      \name{author}{2}{}{%
+        {{hash=433a3f33ee24a187348813f11a6725f9}{%
+           family={Metz},
+           familyi={M\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=332234a3ec71389506b426ea38084767}{%
+           family={Clark\bibnamedelima Miller},
+           familyi={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{fullhash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{fullhashraw}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{bibnamehash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{authorbibnamehash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{authornamehash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{authorfullhash}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \strng{authorfullhashraw}{98cb8666ce6e7a5d7ae1369a96345bfe}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{COMP41820 Module Reading Materials, University College Dublin}
+      \field{title}{Relational Ethics}
+      \field{year}{n.d.}
+    \endentry
+    \entry{cityswift_esg}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=483a219c7112c2c970e8c371f2312b1f}{%
+           family={{CitySwift}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {CitySwift Public Documentation}%
+      }
+      \strng{namehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{fullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{bibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorbibnamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authornamehash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhash}{483a219c7112c2c970e8c371f2312b1f}
+      \strng{authorfullhashraw}{483a219c7112c2c970e8c371f2312b1f}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Retrieved from company website}
+      \field{title}{Corporate Social Responsibility, Environmental, Social, and Governance (ESG) Policies}
+      \field{year}{2025}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
