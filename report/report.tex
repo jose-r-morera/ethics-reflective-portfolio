@@ -558,12 +558,12 @@ While the system aims to dynamically eliminate "bus bunching" through real-time 
 The system’s predictive accuracy (Technical Value) depends on high-dimensional datasets, including ticketing and origin-destination flows. However, this creates a Deontological conflict with the passenger's right to privacy and GDPR-mandated data minimization. A purely optimized system would use personalized travel histories to anticipate individual needs. We revisited this in Case 8 by formalizing a consent-based logical gate: unless explicit user consent is registered, the system is strictly limited to using aggregated, anonymized zone data, prioritizing individual privacy over marginal gains in predictive precision.
 
 \section{Evidence}
-Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script (v2.1). The solver leverages First-Order Logic (FOL) predicates and soft-constraint optimization to reconcile all 8 ethical cases. The successful ethical audit is shown in the terminal output below.
+Validation of the functional and ethical goals was achieved by executing the \texttt{cityswift\_z3\_implementation.py} script (v2.1). The solver leverages First-Order Logic (FOL) predicates and soft-constraint optimization to reconcile all 8 ethical cases. The successful ethical reconciliation is shown in the terminal output below.
 
 \begin{lstlisting}[style=mystyle, caption={Terminal Output of CitySwift Ethical Logic Engine (v2.1)}]
-Executing CitySwift Ethical Logic Engine (v2.1 - FOL Integration)...
+Executing CitySwift Ethical Logic Engine (v2.1)...
 
---- ETHICAL AUDIT: SATISFIED ---
+--- RECONCILIATION SUCCESSFUL ---
 Route 0 | Freq: 2 | Demand: 100
 Route 1 | Freq: 0 | Demand: 80
 Route 2 | Freq: 2 | Demand: 120
@@ -575,11 +575,9 @@ Route 7 | Freq: 0 | Demand: 20
 Route 8 | Freq: 0 | Demand: 150
 Route 9 | Freq: 0 | Demand: 10
 
-Weather Care Active: True
-Audit Result: NO PUNISHMENT (Confidence 0.92)
-GDPR Status: ANONYMIZED MODE
-
-Ethical Reconciliation: COMPLETE (8/8 cases formalised)
+Weather Care Mode: True
+Audit Status: False (Confidence 0.92)
+GDPR Status: Anonymized (No individual data used)
 \end{lstlisting}
 
 \begin{figure}[h!]
