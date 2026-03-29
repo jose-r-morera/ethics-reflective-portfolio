@@ -480,11 +480,11 @@ Our functional goals ($F_{n}$) focus on network utility and operational efficien
 \subsection{Ethical Goals and Validation}
 The ethical goals ($E_{n}$) represent the normative "guardrails" identified in Chapter 2:
 \begin{itemize}
-  \item \textbf{E1: Minimum Service Floor}: Deontological protection ensuring critical routes retain at least 50\% of baseline frequency.
+  \item \textbf{E1: Minimum Service Floor}: Deontological protection ensuring critical routes retain at least 80\% of baseline frequency.
   \item \textbf{E2: Distributive Justice}: Ensuring each urban zone retains at least 60\% of its total baseline capacity to prevent "transit deserts."
   \item \textbf{E3: Operator Fairness}: Enforcing a 95\% confidence threshold (symbolic proof) for automated delay penalties.
   \item \textbf{E4: Virtue of Care}: Prioritizing human comfort (heating) over carbon efficiency in severe weather.
-  \item \textbf{E5: Driver Safety}: Enforcing legally mandated workload caps (8 hours per driver).
+  \item \textbf{E5: Fatigue Mitigation}: Deontological protection ensuring driver workload remains within a 90\% safety buffer to prevent exhaustion.
   \item \textbf{E6: GDPR Privacy}: Ensuring data anonymization unless explicit consent is registered.
 \end{itemize}
 \textbf{Validation Method:} Ethical goals are encoded as hard logical invariants within the Z3 model (\texttt{cityswift\_z3\_implementation.py}). Validation is achieved by proving that no functional optimization can violate these predicates.
@@ -523,10 +523,10 @@ for r in routes:
 
 \subsection{Goal E1: Minimum Service Floor (Critical Routes)}
 \begin{lstlisting}[style=py]
-# E1: Critical Route Floor (50%)
+# E1: Critical Route Floor (80%)
 for r in routes:
     optimizer.add(z3.Implies(is_critical(r), 
-                            frequency(r) >= baseline_f(r) / 2))
+                            frequency(r) * 5 >= baseline_f(r) * 4))
 \end{lstlisting}
 
 \subsection{Goal E2: Distributive Justice (Transit Deserts)}
@@ -562,10 +562,10 @@ prioritize_care = z3.Bool('prioritize_care')
 optimizer.add(prioritize_care == (temp < 0))
 \end{lstlisting}
 
-\subsection{Goal E5: Driver Safety (Legality)}
+\subsection{Goal E5: Fatigue Mitigation (Deontology)}
 \begin{lstlisting}[style=py]
-# E5: Driver Safety (Workload limit)
-optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
+# E5: Fatigue Mitigation (90% Safety Buffer)
+optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= 0.9 * driver_hours_limit)
 \end{lstlisting}
 
 \subsection{Goal E6: GDPR Privacy (Anonymization)}
@@ -625,11 +625,128 @@ The success screenshot (Fig \ref{fig:z3_success}) provides an audit trail showin
 
 %%%%%%%%
 \chapter{ChatGPT Says...}
-In this chapter, you will choose a commonly used LLM (e.g., chatGPT / claude / perplexity / gemini etc. - identify which model and version (\textbf{N.B}: Only the free version can be used)).
 
-Present a debate with the LLM about the cases you identified in the previous chapter. \textit{At least four} cases must be debated. You must ask the LLM to present multiple (at least two) actions (or non-actions) for each of the cases, and the reasoning behind why it recommends the option that it does. Do NOT try to show the LLM as being better than it is. If it makes logical errors in its reasoning, show them.
+The version we are going to use for the debates is Gemini 3 Flash, which is the free version available in March 2026
 
-Use clear screenshots to present your prompts and the LLM's response
+\subsection*{Debate 1: Efficiency vs. Equity (Transit Deserts)}
+User:
+\begin{figure}[H]aaaaaa
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate1.png}
+\end{figure}
+LLM:
+c\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate1.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate1.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate1.3.png}
+\end{figure}
+
+\subsection*{Debate 2: Ecological Stewardship vs. Virtue of Care}
+User:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate2.png}
+\end{figure}
+LLM:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate2.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate2.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate2.3.png}
+\end{figure}
+
+\subsection*{Debate 3: Algorithmic Transparency vs. Punitive Accuracy}
+User:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate3.png}
+\end{figure}
+LLM:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate3.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate3.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate3.3.png}
+\end{figure}
+
+\subsection*{Debate 4: Data Privacy vs. Predictive Precision}
+User:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate4.png}
+\end{figure}
+LLM:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate4.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate4.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate4.3.png}
+\end{figure}
+
+\subsection*{Debate 5: Predictable Reliability vs. Dynamic Throughput}
+User:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate5.png}
+\end{figure}
+LLM:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate5.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate5.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate5.3.png}
+\end{figure}
+
+\subsection*{Debate 6: Data-Driven Accuracy vs. Worker Safety}
+User:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate6.png}
+\end{figure}
+LLM:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate6.1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate6.2.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{debate6.3.png}
+\end{figure}
 
 \chapter{Teammate \#1 Says...}
 This chapter is to be written solely by team member \#1\\

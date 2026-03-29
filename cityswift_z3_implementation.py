@@ -105,9 +105,9 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     for r in routes:
         optimizer.add(z3.Abs(opt_headway(r) - sched_h(r)) <= 15)
 
-    # [E1] Minimum Service Floor (Critical Routes >= 50%)
+    # [E1] Minimum Service Floor (Critical Routes >= 80%)
     for r in routes:
-        optimizer.add(z3.Implies(is_critical(r), frequency(r) >= baseline_f(r) / 2))
+        optimizer.add(z3.Implies(is_critical(r), frequency(r) * 5 >= baseline_f(r) * 4))
 
     # [E2] Distributive Justice (60% zone coverage)
     # Refined: A route's frequency contributes to EVERY zone it passes through.
@@ -136,8 +136,8 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     optimizer.add(prioritize_care == (temp < 0))
     optimizer.add(temp == -2) 
 
-    # [E5] Driver Safety (Workload limit)
-    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
+    # [E5] Fatigue Mitigation (Deontological Safety Buffer)
+    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= 0.9 * driver_hours_limit)
 
     # [E6] GDPR Privacy (Consent check)
     consent = z3.Bool('consent')
@@ -189,7 +189,7 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         print(f"- [Case E2] Distributive Justice: MET (Min 60% per zone)")
         print(f"- [Case E3] Operator Fairness: {m.evaluate(is_op_controlled)} (Conf: {m.evaluate(confidence)})")
         print(f"- [Case E4] Weather Care Mode: {m.evaluate(prioritize_care)} (Temp: {m.evaluate(temp)})")
-        print(f"- [Case E5] Driver Safety: MET (Workload under cap)")
+        print(f"- [Case E5] Fatigue Mitigation: MET (90% Safety Buffer)")
         print(f"- [Case E6] GDPR Status: ANONYMIZED")
 
         print(f"\nOperational Metadata:")
