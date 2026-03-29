@@ -17,18 +17,18 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     total_fleet_limit = 60
     driver_hours_limit = num_drivers * hours_per_shift
     
-    # (RouteID, ZoneID, Baseline_Freq, Demand, IsCritical, Sched_Headway)
+    # (RouteID, List_of_Zones, Baseline_Freq, Demand, IsCritical, Sched_Headway)
     raw_data = [
-        (0, "Z0", 4, 100, True, 15),
-        (1, "Z0", 6, 80, False, 10),
-        (2, "Z1", 4, 120, True, 15),
-        (3, "Z1", 8, 200, False, 7),
-        (4, "Z2", 5, 50, False, 12),
-        (5, "Z2", 5, 30, False, 12),
-        (6, "Z3", 10, 300, False, 6),
-        (7, "Z3", 4, 20, False, 15),
-        (8, "Z4", 6, 150, False, 10),
-        (9, "Z4", 4, 10, False, 15),
+        (0, ["Z0", "Z1"], 4, 100, True, 15),
+        (1, ["Z0", "Z2"], 6, 80, False, 10),
+        (2, ["Z1", "Z3"], 4, 120, True, 15),
+        (3, ["Z1", "Z0"], 8, 200, False, 7),
+        (4, ["Z2", "Z4"], 5, 50, False, 12),
+        (5, ["Z2"], 5, 30, False, 12),
+        (6, ["Z3", "Z0"], 10, 300, False, 6),
+        (7, ["Z3"], 4, 20, False, 15),
+        (8, ["Z4", "Z0"], 6, 150, False, 10),
+        (9, ["Z4"], 4, 10, False, 15),
     ]
 
     print(f"\n{'='*65}")
@@ -38,10 +38,14 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     print(f"Scenario Parameters:")
     print(f"- Total Fleet Limit: {total_fleet_limit} buses")
     print(f"- Driver Capacity: {num_drivers} drivers ({hours_per_shift} hrs/shift)")
-    print("- Input Mock Routes [ID | Zone | Base | Demand | Critical]:")
-    for r_id, z_id, base, d, crit, shift in raw_data:
+    print("Input Mock Routes:")
+    i_header = f"{'Route ID':<9} | {'Zones':<12} | {'Base Freq':<10} | {'Demand':<10} | {'Critical'}"
+    print(i_header)
+    print("-" * len(i_header))
+    for r_id, zones, base, d, crit, shift in raw_data:
         c_str = "Yes" if crit else "No"
-        print(f"  R{r_id:<2} | {z_id:<4} | {base:<4} | {d:<6} | {c_str}")
+        z_str = ",".join(zones)
+        print(f"R{r_id:<8} | {z_str:<12} | {base:<10} | {d:<10} | {c_str}")
     print("")
 
     # --- 2. Z3 MODEL INITIALIZATION ---
@@ -49,7 +53,6 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     Zone = z3.DeclareSort('Zone')
     
     is_critical = z3.Function('is_critical', Route, z3.BoolSort())
-    route_zone = z3.Function('route_zone', Route, Zone)
     demand = z3.Function('demand', Route, z3.IntSort())
     baseline_f = z3.Function('baseline_f', Route, z3.IntSort())
     sched_h = z3.Function('sched_h', Route, z3.IntSort())
@@ -62,16 +65,19 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     # Mapping Data to Z3
     routes = []
     zones_map = {}
-    mock_data = []
-    for r_id, z_id, base, d, crit, sh in raw_data:
+    mock_data = [] # Stores (r_const, list_of_zone_consts, base, d, crit, sh)
+    
+    # Initialize all possible zones first from raw_data
+    all_zone_ids = sorted(list(set([z for _, zs, _, _, _, _ in raw_data for z in zs])))
+    for z_id in all_zone_ids:
+        zones_map[z_id] = z3.Const(z_id, Zone)
+
+    for r_id, z_ids, base, d, crit, sh in raw_data:
         r_const = z3.Const(f'R{r_id}', Route)
-        if z_id not in zones_map:
-            zones_map[z_id] = z3.Const(z_id, Zone)
-        
         routes.append(r_const)
-        mock_data.append((r_const, zones_map[z_id], base, d, crit, sh))
+        z_consts = [zones_map[z_id] for z_id in z_ids]
+        mock_data.append((r_const, z_consts, base, d, crit, sh))
         
-        optimizer.add(route_zone(r_const) == zones_map[z_id])
         optimizer.add(baseline_f(r_const) == base)
         optimizer.add(demand(r_const) == d)
         optimizer.add(is_critical(r_const) == crit)
@@ -80,9 +86,15 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         optimizer.add(opt_headway(r_const) > 0)
 
     # --- 3. GOAL ORDERING (F1-F3, E1-E6) ---
+    PASSENGERS_PER_BUS = 50
 
-    # [F1] Maximize Utility (Optimization Objective)
-    utility = z3.Sum([frequency(r) * demand(r) for r in routes])
+    # [F1] Maximize Utility (Saturation Model)
+    # Utility = min(Demand, Frequency * 50)
+    def route_utility(r, d):
+        coverage = frequency(r) * PASSENGERS_PER_BUS
+        return z3.If(coverage <= d, coverage, d)
+
+    utility = z3.Sum([route_utility(r, d) for r, zs, b, d, c, sh in mock_data])
     optimizer.maximize(utility)
 
     # [F2] Resource Constraint Satisfaction
@@ -98,17 +110,25 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         optimizer.add(z3.Implies(is_critical(r), frequency(r) >= baseline_f(r) / 2))
 
     # [E2] Distributive Justice (60% zone coverage)
+    # Refined: A route's frequency contributes to EVERY zone it passes through.
     for z_id, z_const in zones_map.items():
-        z_routes = [r for r, rz, b, d, c, sh in mock_data if rz == z_const]
-        z_base = sum([b for r, rz, b, d, c, sh in mock_data if rz == z_const])
-        z_freq = z3.Sum([frequency(r) for r in z_routes])
-        optimizer.add(z3.ToReal(z_freq) >= 0.6 * float(z_base))
+        # Find all routes that pass through this zone
+        intersecting_routes = []
+        z_total_baseline = 0
+        for r_const, z_consts, base, d, crit, sh in mock_data:
+            if z_const in z_consts:
+                intersecting_routes.append(r_const)
+                z_total_baseline += base
+        
+        if intersecting_routes:
+            z_freq_sum = z3.Sum([frequency(r) for r in intersecting_routes])
+            optimizer.add(z3.ToReal(z_freq_sum) >= 0.6 * float(z_total_baseline))
 
     # [E3] Operator Fairness (Confidence >= 95%)
     confidence = z3.Real('confidence')
     is_op_controlled = z3.Bool('is_op_controlled')
     optimizer.add(is_op_controlled == (confidence >= 0.95))
-    optimizer.add(confidence == 0.92) 
+    optimizer.add(confidence == 23/25) # 0.92
 
     # [E4] Virtue of Care (Weather heating)
     temp = z3.Real('temp')
@@ -116,7 +136,7 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     optimizer.add(prioritize_care == (temp < 0))
     optimizer.add(temp == -2) 
 
-    # [E5] Driver Safety (Workload limit - overlapping F2 but distinct Case)
+    # [E5] Driver Safety (Workload limit)
     optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
 
     # [E6] GDPR Privacy (Consent check)
@@ -129,7 +149,7 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     if trigger_failure:
         print("ALERT: Injecting impossible functional demand to trigger ethical safety violation...")
         for r in routes:
-            optimizer.add(frequency(r) >= baseline_f(r) * 2)
+            optimizer.add(frequency(r) >= baseline_f(r) * 5) # Increased multiplier for multi-zone conflict
 
     # --- 4. VALIDATION ENGINE & OUTPUT ---
     check = optimizer.check()
@@ -140,25 +160,29 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         print("- Functional Goals: MET (Utility Maximized, Constraints Satisfied)")
         print("- Ethical Goals: MET (Normative Guardrails Verified)")
         
-        header = f"{'Route ID':<9} | {'Zone':<8} | {'Allocated (Base)':<18} | {'Demand':<10} | {'Status'}"
+        header = f"{'Route ID':<9} | {'Zones':<12} | {'Allocated (Base)':<18} | {'Demand':<10} | {'Status'}"
         print(f"\n{header}")
         print("-" * len(header))
-        for i, r in enumerate(routes):
-            freq = m.evaluate(frequency(r)).as_long()
-            base = m.evaluate(baseline_f(r)).as_long()
-            dem = m.evaluate(demand(r)).as_long()
-            crit = " [CRITICAL]" if m.evaluate(is_critical(r)) else ""
-            z_val = str(m.evaluate(route_zone(r))).replace("Zone!val!", "Z")
-            print(f"Route {i:<4} | {z_val:<8} | {freq:<2} ({base:<2}) buses/hr | {dem:<10} |{crit}")
+        for r_const, z_consts, base, d, crit, sh in mock_data:
+            freq = m.evaluate(frequency(r_const)).as_long()
+            r_id = str(r_const).replace('R', '')
+            c_str = " [CRITICAL]" if crit else ""
+            z_str = ",".join([str(z) for z in z_consts])
+            print(f"Route {r_id:<4} | {z_str:<12} | {freq:<2} ({base:<2}) buses/hr | {d:<10} |{c_str}")
         
         print("\nZone Coverage Summary (Distributive Justice):")
-        print("-" * 50)
+        print("-" * 55)
         for z_id, z_const in zones_map.items():
-            z_routes = [r for r, rz, b, d, c, sh in mock_data if rz == z_const]
-            z_base = sum([b for r, rz, b, d, c, sh in mock_data if rz == z_const])
-            z_freq = sum([m.evaluate(frequency(r)).as_long() for r in z_routes])
-            coverage = (z_freq / z_base) * 100
-            print(f"{z_id:<8}: {z_freq:>2.1f}/{z_base:>2.1f} buses/hr ({coverage:>3.1f}%) - [SATISFIED]")
+            # Calculate actual sum and baseline sum for this zone
+            z_actual_sum = 0
+            z_base_sum = 0
+            for r_const, z_consts, base, d, crit, sh in mock_data:
+                if z_const in z_consts:
+                    z_actual_sum += m.evaluate(frequency(r_const)).as_long()
+                    z_base_sum += base
+            
+            coverage = (z_actual_sum / z_base_sum) * 100 if z_base_sum > 0 else 0
+            print(f"{z_id:<8}: {z_actual_sum:>2.1f}/{z_base_sum:>2.1f} buses/hr ({coverage:>3.1f}%) - [SATISFIED]")
 
         print("\nEthical Governance Status:")
         print(f"- [Case E1] Critical Floor Protection: MET")

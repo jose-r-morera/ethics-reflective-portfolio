@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber report"] 1774806453.70978 "report.bcf" "report.bbl" "report" 1774809803.29153 0
+["biber report"] 1774806453.70978 "report.bcf" "report.bbl" "report" 1774810898.20544 0
   "references.bib" 1774803193.54571 2234 0843a6cd99225c617848d4950a9ac8d2 ""
-  "report.bcf" 1774809802.97265 109250 691949a59f948550a195bee88e5b5eaa "pdflatex"
+  "report.bcf" 1774810898.05056 109250 691949a59f948550a195bee88e5b5eaa "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1774809799.39403 "/home/jr/Desktop/Msc_AI/AI-Ethics/ethics-reflective-portfolio/report/report.tex" "report.pdf" "report" 1774809803.29258 0
+["pdflatex"] 1774810895.52167 "/home/jr/Desktop/Msc_AI/AI-Ethics/ethics-reflective-portfolio/report/report.tex" "report.pdf" "report" 1774810898.20597 0
   "/etc/texmf/web2c/texmf.cnf" 1759913319.05192 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/jr/Desktop/Msc_AI/AI-Ethics/ethics-reflective-portfolio/report/report.tex" 1774809795.10248 50963 c5a8d1971abf5a4e264b56ba00db4d04 ""
+  "/home/jr/Desktop/Msc_AI/AI-Ethics/ethics-reflective-portfolio/report/report.tex" 1774810895.09182 50044 b5739f2d59c74f51ddd660597ec81a4e ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecit0900.tfm" 1136768653 1536 2a581b33e8ae2f16b1d733398b528242 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecsi1095.tfm" 1136768653 3584 1a0353d13d3e702865b76e3b1c321b5b ""
@@ -26,6 +26,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecsx2488.tfm" 1136768653 3584 8530f700a3778253a0a6d6639fda16c7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt0900.tfm" 1136768653 1536 ae7aab2f8a4bc9edfce2899f53ba88c3 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1095.tfm" 1136768653 1536 a988bfe554c1f79514bd46d13c3c64ce ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcit0900.tfm" 1136768653 1536 778f31c035899ac2dacaeb566cf2d78e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcss1095.tfm" 1136768653 1536 f0fa079cdc83a6ffeda21e42352cf1ea ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tctt0900.tfm" 1136768653 1536 bda3e6bf9784a4cc572c754e0c3eeb00 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1136768653 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -36,7 +37,9 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -138,14 +141,14 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1759913487 3349238 e4671a76cd650f861c483a2775c4459f ""
   "UCD_CS_41820_Report.cls" 1774757296.69392 5000 e29d91b90b4b2035966b4ffaed007ec8 ""
   "UCD_Logo.pdf" 1774757676.7538 10918 33058b7ce57a4bbafca460f135c3b1a8 ""
-  "functional_ethical_validation.png" 1774809363.23916 160499 81904b8cf1fb17222b7bce66d636a3f1 ""
-  "goal_failure_validation.png" 1774809363.28816 58096 b88d9b8c7040c7054951a5999c0fb24c ""
-  "report.aux" 1774809802.96565 9379 74b874f6cfce82d99f95e6da7ec02e45 "pdflatex"
+  "report.aux" 1774810898.04756 9393 b45bb389a96f8c59826e27e758fc2207 "pdflatex"
   "report.bbl" 1774806455.39493 8626 65d53475bc38730bce07465e73c1864a "biber report"
-  "report.out" 1774809802.96965 5696 fea2376f02482b67c6fbda25c0291f01 "pdflatex"
-  "report.run.xml" 1774809802.97557 2420 2e26191321a4c109989d9c761bf2eb99 "pdflatex"
-  "report.tex" 1774809795.10248 50963 c5a8d1971abf5a4e264b56ba00db4d04 ""
-  "report.toc" 1774809802.97557 3772 c3779f558e81ebda2517fa6f9e803e84 "pdflatex"
+  "report.out" 1774810898.04856 5308 d6dcb8d99f30e845dd65d2de3bae9bab "pdflatex"
+  "report.run.xml" 1774810898.05266 2420 2e26191321a4c109989d9c761bf2eb99 "pdflatex"
+  "report.tex" 1774810895.09182 50044 b5739f2d59c74f51ddd660597ec81a4e ""
+  "report.toc" 1774810898.05266 3745 907883776bc1e939b13abaaf39399e48 "pdflatex"
+  "z3_scenario_failure.png" 1774809339.95587 53798 ccd22b0feb8d7fb00dc8aef5141d4fc7 ""
+  "z3_scenario_success.png" 1774809295.6732 141401 11780f66953efe87e09826ab4cfbbd13 ""
   (generated)
   "report.aux"
   "report.bcf"

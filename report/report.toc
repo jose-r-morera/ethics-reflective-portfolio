@@ -14,26 +14,27 @@
 \contentsline {subsection}{\numberline {3.1.1}Domain Identification}{12}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Functional Goals and Validation}{12}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Ethical Goals and Validation}{13}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Formal Ethical Constraints (8 Cases)}{13}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Case 1: Minimum Service Baseline (Utilitarianism)}{13}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Case 2: Penalty Categorization Confidence (Deontology)}{13}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Case 3: Extreme Weather Prioritization (Virtue Ethics)}{14}{subsection.3.1.7}%
-\contentsline {subsection}{\numberline {3.1.8}Case 4: Transit Desert Prevention (Relational Ethics)}{14}{subsection.3.1.8}%
-\contentsline {subsection}{\numberline {3.1.9}Case 5: Carbon-Neutral Fleet Optimization (Ecological Stewardship)}{14}{subsection.3.1.9}%
-\contentsline {subsection}{\numberline {3.1.10}Case 6: Driver Fatigue Management (Legal / Deontology)}{14}{subsection.3.1.10}%
-\contentsline {subsection}{\numberline {3.1.11}Case 7: Predictable Scheduling vs. Dynamic Efficiency (Reliability)}{15}{subsection.3.1.11}%
-\contentsline {subsection}{\numberline {3.1.12}Case 8: GDPR Anonymization vs. Predictive Precision (Privacy)}{15}{subsection.3.1.12}%
-\contentsline {section}{\numberline {3.2}Points of Conflict}{15}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Formal Logical Constraints (9 Cases)}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Goal F1: Network Utility Maximization (Utilitarianism)}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Goal F2: Resource Constraint Satisfaction}{14}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Goal F3: Predictable Synchronization}{14}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Goal E1: Minimum Service Floor (Critical Routes)}{14}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Goal E2: Distributive Justice (Transit Deserts)}{14}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Goal E3: Operator Fairness (Deontology)}{14}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Goal E4: Virtue of Care (Extreme Weather)}{15}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Goal E5: Driver Safety (Legality)}{15}{subsection.3.2.8}%
+\contentsline {subsection}{\numberline {3.2.9}Goal E6: GDPR Privacy (Anonymization)}{15}{subsection.3.2.9}%
+\contentsline {section}{\numberline {3.3}Points of Conflict}{15}{section.3.3}%
 \contentsline {paragraph}{Efficiency vs. Equity (Transit Deserts)}{15}{section*.22}%
 \contentsline {paragraph}{Ecological Stewardship vs. Virtue of Care}{15}{section*.23}%
 \contentsline {paragraph}{Data-Driven Accuracy vs. Worker Safety}{16}{section*.24}%
 \contentsline {paragraph}{Algorithmic Transparency vs. Punitive Accuracy}{16}{section*.25}%
 \contentsline {paragraph}{Predictable Reliability vs. Dynamic Throughput}{16}{section*.26}%
 \contentsline {paragraph}{Data Privacy vs. Predictive Precision}{16}{section*.27}%
-\contentsline {section}{\numberline {3.3}Evidence}{16}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Functional and Ethical Goal Validation}{16}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Identification of Goal Unreachability}{18}{subsection.3.3.2}%
-\contentsline {paragraph}{Logic Analysis}{18}{section*.28}%
+\contentsline {section}{\numberline {3.4}Evidence}{16}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Functional and Ethical Goal Validation}{16}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Identification of Goal Unreachability}{17}{subsection.3.4.2}%
+\contentsline {paragraph}{Logic Analysis}{17}{section*.28}%
 \contentsline {chapter}{\numberline {4}ChatGPT Says...}{19}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Teammate \#1 Says...}{20}{chapter.5}%
 \contentsline {chapter}{\numberline {6}Teammate \#2 Says...}{21}{chapter.6}%

@@ -461,7 +461,7 @@ This section details our approach to modeling the CitySwift system, distinguishi
 \subsection{Domain Identification}
 The domain of the system is modeled as a formal transport network consisting of:
 \begin{itemize}
-  \item \textbf{Routes ($R$)}: The fundamental units of service (e.g., Bus Éireann line segments).
+  \item \textbf{Routes ($R$)}: The fundamental units of service. Each route traverses a defined \textit{set} of urban zones.
   \item \textbf{Zones ($Z$)}: Geographic aggregations used for distributive justice audits.
   \item \textbf{Operational Capacity}: Finite resources including fleet size (60 buses) and driver man-hours (160 hours total).
   \item \textbf{Passenger Demand ($D$)}: Variable throughput requirements per route.
@@ -482,111 +482,120 @@ The ethical goals ($E_{n}$) represent the normative "guardrails" identified in C
 \begin{itemize}
   \item \textbf{E1: Minimum Service Floor}: Deontological protection ensuring critical routes retain at least 50\% of baseline frequency.
   \item \textbf{E2: Distributive Justice}: Ensuring each urban zone retains at least 60\% of its total baseline capacity to prevent "transit deserts."
-  \item \textbf{E3: Operator Fairness}: Enforcing a 95\% confidence threshold for automated delay penalties.
-  \item \textbf{E4: Virtue of Care}: Prioritizing human comfort (heating/boarding) over carbon efficiency in severe weather (sub-zero).
+  \item \textbf{E3: Operator Fairness}: Enforcing a 95\% confidence threshold (symbolic proof) for automated delay penalties.
+  \item \textbf{E4: Virtue of Care}: Prioritizing human comfort (heating) over carbon efficiency in severe weather.
+  \item \textbf{E5: Driver Safety}: Enforcing legally mandated workload caps (8 hours per driver).
+  \item \textbf{E6: GDPR Privacy}: Ensuring data anonymization unless explicit consent is registered.
 \end{itemize}
 \textbf{Validation Method:} Ethical goals are encoded as hard logical invariants within the Z3 model (\texttt{cityswift\_z3\_implementation.py}). Validation is achieved by proving that no functional optimization can violate these predicates.
 
 \textbf{NOTE:} As per the requirements, our implementation is designed to identify situations where goals \textit{cannot} be reached. This occurs when functional demand (e.g., a mandate for 200\% frequency) contradicts ethical or operational limits. Our script includes a "Resource Contradiction" scenario specifically to demonstrate this failure detection.
 
-\subsection{Formal Ethical Constraints (8 Cases)}
+\section{Formal Logical Constraints (9 Cases)}
 
-Using the Z3 library, we implemented the following eight cases, each mapping to a specific stakeholder and ethical principle:
+Using the Z3 library, we implemented the following nine cases, split between functional objectives and ethical guardrails:
 
-\subsection{Case 1: Minimum Service Baseline (Utilitarianism)}
-To prevent "transit deserts," critical routes (e.g., those serving hospitals) are constrained to maintain at least 50\% of their baseline frequency, regardless of the system's drive for efficiency.
+\subsection{Goal F1: Network Utility Maximization (Utilitarianism)}
+The primary objective is to maximizepassenger coverage. We use a \textit{saturation model} where additional frequency on a route only yields utility until the predicted passenger demand is met ($Freq \times 50 \geq Demand$).
 \begin{lstlisting}[style=py]
-# 7. Ethical Constraints: Hospital routes >= 50% baseline
-for r in routes:
-    optimizer.add(z3.Implies(is_critical(r), 
-                            frequency(r) >= baseline_freq(r) / 2))
+# F1: Maximize Utility (Saturation Model)
+def route_utility(r, d):
+    coverage = frequency(r) * 50 # 50 passengers per bus
+    return z3.If(coverage <= d, coverage, d)
+
+utility = z3.Sum([route_utility(r, d) for r, zs, b, d, c, sh in mock_data])
+optimizer.maximize(utility)
 \end{lstlisting}
 
-\subsection{Case 2: Penalty Categorization Confidence (Deontology)}
-Protecting operators from "black-box" decisions, the system only categorizes a delay as "Operator-Controlled" for financial penalties if the algorithmic confidence exceeds 95\%.
+\subsection{Goal F2: Resource Constraint Satisfaction}
 \begin{lstlisting}[style=py]
-# Only "Operator-Controlled" if Confidence >= 0.95
-confidence = z3.Real('confidence')
-is_operator_controlled = z3.Bool('is_operator_controlled')
-optimizer.add(is_operator_controlled == (confidence >= 0.95))
-\end{lstlisting}
-
-\subsection{Case 3: Extreme Weather Prioritization (Virtue Ethics)}
-The system balances carbon efficiency with the virtue of care. In sub-zero temperatures, it prioritizes passenger boarding and heating over the carbon-saving "anti-idling" protocol.
-\begin{lstlisting}[style=py]
-# Virtues are weighted; they can be overridden in extreme dilemmas.
-temperature = z3.Real('temperature')
-prioritize_passenger_care = z3.Bool('prioritize_passenger_care')
-optimizer.add(prioritize_passenger_care == (temperature < 0))
-optimizer.add_soft(prioritize_passenger_care == True, weight=100)
-\end{lstlisting}
-
-\subsection{Case 4: Transit Desert Prevention (Relational Ethics)}
-Ensuring equitable access across all urban zones. Every zone must retain at least 60\% of its total baseline service capacity during any optimization step.
-\begin{lstlisting}[style=py]
-# Every zone must retain at least 60% of baseline total capacity
-for z in zones:
-    routes_in_zone = [r for r, r_zone, b, d, c, sh in mock_data if r_base_zone(r_zone) == str(z)]
-    z_baseline = sum([b for i, r_zone, b, d, c, sh in mock_data if r_base_zone(r_zone) == str(z)])
-    zone_sum = z3.Sum([frequency(r) for r in routes_in_zone])
-    optimizer.add(z3.ToReal(zone_sum) >= z3.ToReal(z_baseline) * 0.6)
-\end{lstlisting}
-
-\subsection{Case 5: Carbon-Neutral Fleet Optimization (Ecological Stewardship)}
-The system's objective function maximizes service utility weighted by an "Eco-Score," ensuring that routes with higher demand are served by the most efficient fleet segments.
-\begin{lstlisting}[style=py]
-# Maximize score balancing Demand Coverage and Efficiency
-eco_score = z3.Sum([frequency(r) * demand(r) for r in routes])
-optimizer.maximize(eco_score)
-\end{lstlisting}
-
-\subsection{Case 6: Driver Fatigue Management (Legal / Deontology)}
-A strict safety constraint ensuring that no optimization of bus frequency results in a total driver workload that exceeds safe, legally mandated limits.
-\begin{lstlisting}[style=py]
-# Total hours worked must not exceed safety limit (8hrs/driver)
-driver_hours_limit = 20 * 8 # num_drivers * limit
+# F2: Fleet and Driver Constraints
+optimizer.add(z3.Sum([frequency(r) for r in routes]) <= total_fleet_limit)
 optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
 \end{lstlisting}
 
-\subsection{Case 7: Predictable Scheduling vs. Dynamic Efficiency (Reliability)}
-While dynamic headway adjustment eliminates "bus bunching," it can frustrate passengers who rely on a consistent timetable. This constraint limits real-time deviations to a +/- 15-minute window from the public-facing schedule, prioritizing reliability over pure mathematical efficiency.
+\subsection{Goal F3: Predictable Synchronization}
 \begin{lstlisting}[style=py]
-# Dynamic adjustments cannot exceed 15 mins from public timetable
+# F3: Predictable Headways (+/- 15 mins)
 for r in routes:
-    optimizer.add(z3.Abs(opt_headway(r) - scheduled_h(r)) <= 15)
+    optimizer.add(z3.Abs(opt_headway(r) - sched_h(r)) <= 15)
 \end{lstlisting}
 
-\subsection{Case 8: GDPR Anonymization vs. Predictive Precision (Privacy)}
-To protect passenger data rights, the system is logically prevented from using individual-level travel histories for demand forecasting unless explicit user consent has been registered, as mandated by GDPR frameworks.
+\subsection{Goal E1: Minimum Service Floor (Critical Routes)}
 \begin{lstlisting}[style=py]
-# Use aggregated data unless explicit consent is registered
-consent_given = z3.Bool('user_consent_granted')
-use_individual_data = z3.Bool('use_individual_travel_history')
-optimizer.add(z3.Implies(z3.Not(consent_given), 
-                        z3.Not(use_individual_data)))
-optimizer.add(consent_given == False) # Scenario
+# E1: Critical Route Floor (50%)
+for r in routes:
+    optimizer.add(z3.Implies(is_critical(r), 
+                            frequency(r) >= baseline_f(r) / 2))
+\end{lstlisting}
+
+\subsection{Goal E2: Distributive Justice (Transit Deserts)}
+\begin{lstlisting}[style=py]
+# E2: Distributive Justice (60% zone coverage)
+# A route's frequency contributes to every zone it passes through.
+for z_id, z_const in zones_map.items():
+    intersecting_routes = []
+    z_total_baseline = 0
+    for r_const, z_consts, base, d, crit, sh in mock_data:
+        if z_const in z_consts:
+            intersecting_routes.append(r_const)
+            z_total_baseline += base
+    
+    if intersecting_routes:
+        z_freq_sum = z3.Sum([frequency(r) for r in intersecting_routes])
+        optimizer.add(z3.ToReal(z_freq_sum) >= 0.6 * float(z_total_baseline))
+\end{lstlisting}
+
+\subsection{Goal E3: Operator Fairness (Deontology)}
+\begin{lstlisting}[style=py]
+# E3: Operator Fairness (Confidence >= 95%)
+confidence = z3.Real('confidence')
+is_op_controlled = z3.Bool('is_op_controlled')
+optimizer.add(is_op_controlled == (confidence >= 0.95))
+\end{lstlisting}
+
+\subsection{Goal E4: Virtue of Care (Extreme Weather)}
+\begin{lstlisting}[style=py]
+# E4: Virtue of Care (Weather heating)
+temp = z3.Real('temp')
+prioritize_care = z3.Bool('prioritize_care')
+optimizer.add(prioritize_care == (temp < 0))
+\end{lstlisting}
+
+\subsection{Goal E5: Driver Safety (Legality)}
+\begin{lstlisting}[style=py]
+# E5: Driver Safety (Workload limit)
+optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
+\end{lstlisting}
+
+\subsection{Goal E6: GDPR Privacy (Anonymization)}
+\begin{lstlisting}[style=py]
+# E6: GDPR Privacy (Consent check)
+consent = z3.Bool('consent')
+use_indiv_data = z3.Bool('use_indiv_data')
+optimizer.add(z3.Implies(z3.Not(consent), z3.Not(use_indiv_data)))
 \end{lstlisting}
 
 \section{Points of Conflict}
 The development of the CitySwift Z3 model required navigating several deep-seated value tensions, where purely functional optimization collided with ethical imperatives. These conflicts prompted a fundamental revisit of the system's design, shifting from a simple Utilitarian maximizer to a constrained model that protects vulnerable stakeholders:
 
 \paragraph{Efficiency vs. Equity (Transit Deserts)}
-The primary conflict arose from the tension between Bus Éireann's value of maximized network throughput (Utilitarianism) and the commuters' value of equitable access. A purely efficient algorithm would mathematically favor high-density urban corridors, risking the creation of "transit deserts" in rural areas. We revisited this by implementing Case 1 (Minimum Service Baseline) and Case 4 (Transit Desert Prevention) as hard constraints rather than optimization goals. This ensures that marginalized communities benefit from guaranteed mobility, even at the cost of marginal network-wide efficiency gains.
+The primary conflict arose from the tension between Bus Éireann's value of maximized network throughput (Utilitarianism) and the commuters' value of equitable access. A purely linear efficient algorithm would mathematically favor high-density urban corridors, risking the creation of "transit deserts" in rural areas. We resolved this through a \textbf{double-layered approach}: First, we implementing \textbf{Goal E1} and \textbf{Goal E2} as hard service floors. Second, we refactored the objective function (\textbf{Goal F1}) into a \textit{saturation model}. By capping utility once demand is satisfied, we mathematically prevent "resource hogging" on high-density routes, ensuring surplus buses are distributed to marginalized communities once primary hubs are saturated.
 
 \paragraph{Ecological Stewardship vs. Virtue of Care}
-While both CitySwift and residents value carbon reduction (Virtue Ethics), we identified a conflict during extreme weather events. A strict anti-idling protocol, though virtuous for the environment, violates the virtue of care for vulnerable passengers in sub-zero temperatures. The design was changed to include Case 3 (Extreme Weather Prioritization), which introduces a temperature-triggered logic override. During storms or freezes, the system prioritizes human safety and comfort over carbon-neutral optimization, benefiting elderly and transit-dependent populations.
+While both CitySwift and residents value carbon reduction (Virtue Ethics), we identified a conflict during extreme weather events. A strict anti-idling protocol, though virtuous for the environment, violates the virtue of care for vulnerable passengers in sub-zero temperatures. The design was changed to include \textbf{Goal E4} (Extreme Weather Prioritization), which introduces a temperature-triggered logic override. During storms or freezes, the system prioritizes human safety and comfort over carbon-neutral optimization, benefiting elderly and transit-dependent populations.
 
 \paragraph{Data-Driven Accuracy vs. Worker Safety}
-To achieve high-fidelity forecasting (Technical Value), the system requires granular telemetry of bus movements. However, this creates a conflict with driver privacy and the legal duty to manage fatigue. We addressed this by implementing Case 6 (Driver Fatigue Management), which acts as a "safety brake" on the optimization process. This ensures that the drive for predictive accuracy never culminates in a driver workload that exceeds legal safety limits, benefiting both the drivers (fairness) and the general public (safety).
+To achieve high-fidelity forecasting (Technical Value), the system requires granular telemetry of bus movements. However, this creates a conflict with driver privacy and the legal duty to manage fatigue. We addressed this by implementing \textbf{Goal E5} (Driver Safety), which acts as a "safety brake" on the optimization process. This ensures that the drive for predictive accuracy never culminates in a driver workload that exceeds legal safety limits, benefiting both the drivers (fairness) and the general public (safety).
 
 \paragraph{Algorithmic Transparency vs. Punitive Accuracy}
-The Utilitarian drive for predictive accuracy often relies on "black-box" sub-symbolic models. This creates a Deontological conflict regarding the right to transparent due process if an operator is penalized based on an opaque classification. We revisited the design by implementing Case 2 (Penalty Categorization Confidence), which enforces a 95\% confidence threshold and maintains a fallback to human-readable symbolic logic. This protects operators from arbitrary algorithmic penalties and ensures that judicial/contractual decisions remain auditable.
+The Utilitarian drive for predictive accuracy often relies on "black-box" sub-symbolic models. This creates a Deontological conflict regarding the right to transparent due process if an operator is penalized based on an opaque classification. We revisited the design by implementing \textbf{Goal E3} (Operator Fairness), which enforces a 95\% confidence threshold and maintains a fallback to human-readable symbolic logic. This protects operators from arbitrary algorithmic penalties and ensures that judicial/contractual decisions remain auditable.
 
 \paragraph{Predictable Reliability vs. Dynamic Throughput}
-While the system aims to dynamically eliminate "bus bunching" through real-time headway adjustment, this conflicts with the passenger’s need for a stable and predictable timetable. A passenger planning their journey around a fixed time (\textit{predictability}) may find real-time variations counter-productive, even if they improve network-wide flow (\textit{throughput}). We addressed this in Case 7 by constraining algorithmic autonomy to a +/- 15-minute deviation window, prioritizing passenger reliability and institutional trust over pure mathematical optimization.
+While the system aims to dynamically eliminate "bus bunching" through real-time headway adjustment, this conflicts with the passenger’s need for a stable and predictable timetable. A passenger planning their journey around a fixed time (\textit{predictability}) may find real-time variations counter-productive, even if they improve network-wide flow (\textit{throughput}). We addressed this in \textbf{Goal F3} by constraining algorithmic autonomy to a +/- 15-minute deviation window, prioritizing passenger reliability and institutional trust over pure mathematical optimization.
 
 \paragraph{Data Privacy vs. Predictive Precision}
-The system’s predictive accuracy (Technical Value) depends on high-dimensional datasets, including ticketing and origin-destination flows. However, this creates a Deontological conflict with the passenger's right to privacy and GDPR-mandated data minimization. A purely optimized system would use personalized travel histories to anticipate individual needs. We revisited this in Case 8 by formalizing a consent-based logical gate: unless explicit user consent is registered, the system is strictly limited to using aggregated, anonymized zone data, prioritizing individual privacy over marginal gains in predictive precision.
+The system’s predictive accuracy (Technical Value) depends on high-dimensional datasets, including ticketing and origin-destination flows. However, this creates a Deontological conflict with the passenger's right to privacy and GDPR-mandated data minimization. A purely optimized system would use personalized travel histories to anticipate individual needs. We revisited this in \textbf{Goal E6} by formalizing a consent-based logical gate: unless explicit user consent is registered, the system is strictly limited to using aggregated, anonymized zone data, prioritizing individual privacy over marginal gains in predictive precision.
 
 \section{Evidence}
 Evidence for the successful validation of the system's dual objectives is presented via two distinct terminal outputs from our implementation script.
@@ -596,7 +605,7 @@ Figure \ref{fig:z3_success} demonstrates the "Standard Operation" scenario, wher
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.95\textwidth]{functional_ethical_validation.png}
+  \includegraphics[width=0.95\textwidth]{z3_scenario_success.png}
   \caption{Terminal output showing successful validation of both functional performance and ethical constraint satisfaction.}
   \label{fig:z3_success}
 \end{figure}
@@ -606,7 +615,7 @@ As required by the template, Figure \ref{fig:z3_failure} demonstrates the system
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.95\textwidth]{goal_failure_validation.png}
+  \includegraphics[width=0.95\textwidth]{z3_scenario_failure.png}
   \caption{Terminal output identifying a "Validation Failed" state where functional demands violate ethical safety guardrails.}
   \label{fig:z3_failure}
 \end{figure}
