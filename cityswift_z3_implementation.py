@@ -17,6 +17,9 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     total_fleet_limit = 60
     driver_hours_limit = num_drivers * hours_per_shift
     
+    HOURS_PER_ROUTE_AVG = 1.2
+    PASSENGERS_PER_BUS = 50
+    
     # (RouteID, List_of_Zones, Baseline_Freq, Demand, IsCritical, Sched_Headway)
     raw_data = [
         (0, ["Z0", "Z1"], 4, 100, True, 15),
@@ -86,8 +89,6 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         optimizer.add(opt_headway(r_const) > 0)
 
     # --- 3. GOAL ORDERING (F1-F3, E1-E6) ---
-    PASSENGERS_PER_BUS = 50
-
     # [F1] Maximize Utility (Saturation Model)
     # Utility = min(Demand, Frequency * 50)
     def route_utility(r, d):
@@ -99,18 +100,20 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
 
     # [F2] Resource Constraint Satisfaction
     optimizer.add(z3.Sum([frequency(r) for r in routes]) <= total_fleet_limit)
-    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= driver_hours_limit)
+    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * HOURS_PER_ROUTE_AVG <= driver_hours_limit)
 
     # [F3] Predictable Synchronization (+/- 15 mins)
     for r in routes:
         optimizer.add(z3.Abs(opt_headway(r) - sched_h(r)) <= 15)
 
     # [E1] Minimum Service Floor (Critical Routes >= 80%)
+    CRITICAL_FLOOR = 0.8
     for r in routes:
-        optimizer.add(z3.Implies(is_critical(r), frequency(r) * 5 >= baseline_f(r) * 4))
+        optimizer.add(z3.Implies(is_critical(r), frequency(r) >= baseline_f(r) * CRITICAL_FLOOR))
 
     # [E2] Distributive Justice (60% zone coverage)
     # Refined: A route's frequency contributes to EVERY zone it passes through.
+    MINIMUM_ZONE_COVERAGE = 0.6
     for z_id, z_const in zones_map.items():
         # Find all routes that pass through this zone
         intersecting_routes = []
@@ -122,13 +125,13 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
         
         if intersecting_routes:
             z_freq_sum = z3.Sum([frequency(r) for r in intersecting_routes])
-            optimizer.add(z3.ToReal(z_freq_sum) >= 0.6 * float(z_total_baseline))
+            optimizer.add(z3.ToReal(z_freq_sum) >= MINIMUM_ZONE_COVERAGE * float(z_total_baseline))
 
     # [E3] Operator Fairness (Confidence >= 95%)
     confidence = z3.Real('confidence')
     is_op_controlled = z3.Bool('is_op_controlled')
     optimizer.add(is_op_controlled == (confidence >= 0.95))
-    optimizer.add(confidence == 23/25) # 0.92
+    optimizer.add(confidence == 0.92) # 0.92
 
     # [E4] Virtue of Care (Weather heating)
     temp = z3.Real('temp')
@@ -137,7 +140,7 @@ def cityswift_engine(scenario_name="Standard", trigger_failure=False):
     optimizer.add(temp == -2) 
 
     # [E5] Fatigue Mitigation (Deontological Safety Buffer)
-    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * 1.2 <= 0.9 * driver_hours_limit)
+    optimizer.add(z3.ToReal(z3.Sum([frequency(r) for r in routes])) * HOURS_PER_ROUTE_AVG <= 0.9 * driver_hours_limit)
 
     # [E6] GDPR Privacy (Consent check)
     consent = z3.Bool('consent')
